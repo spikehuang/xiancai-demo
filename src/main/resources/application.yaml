@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/db_panda
+    username: root
+    password: 123456
+    driverClassName: com.mysql.jdbc.Driver
+  thymeleaf:
+    cache: false
+  output:
+    ansi:
+      enabled: ALWAYS
+
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml
+  type-aliases-package: io.spike.domain
