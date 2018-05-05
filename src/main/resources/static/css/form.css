@@ -1,0 +1,40 @@
+.row {
+	margin-top: 20px;
+}
+
+button {
+    margin-left: 0px;
+    margin-bottom: 20px;
+    margin-top: 5px;
+    position: relative;
+}
+
+textarea {
+    margin-top: 10px;
+}
+
+body {
+    margin: 20px 10px 0px 10px;
+}
+
+table {
+    margin-top: 10px;
+}
+
+.div-inline {
+    display:inline-block;
+}
+
+.retrieve {
+    float:right;
+    margin-bottom: 5px;
+}
+
+.calc-id {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.body {
+    margin: 100px;
+}

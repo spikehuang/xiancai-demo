@@ -14,7 +14,9 @@
     </resultMap>
 
     <select id="getUserByPhone" resultMap="BaseResultMap" parameterType="java.lang.String">
-        SELECT user_id, username, password, real_name, phone, address
+        SELECT user_id, username, password, real_name, phone, address, user_type,
+        DATE_FORMAT(FROM_UNIXTIME(create_time), '%Y-%m-%d') create_time_normal,
+        DATE_FORMAT(FROM_UNIXTIME(update_time), '%Y-%m-%d') update_time_normal
         FROM t_user
         WHERE phone = #{phone, jdbcType = VARCHAR}
     </select>
