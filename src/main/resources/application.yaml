@@ -13,3 +13,6 @@ spring:
 mybatis:
   mapper-locations: classpath*:mapper/*.xml
   type-aliases-package: io.spike.domain
+
+server:
+  context-path: /xiancai
