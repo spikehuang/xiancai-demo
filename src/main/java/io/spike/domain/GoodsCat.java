@@ -22,4 +22,11 @@ public class GoodsCat {
         this.catName = catName;
     }
 
+    @Override
+    public String toString() {
+        return "GoodsCat{" +
+                "catId=" + catId +
+                ", catName='" + catName + '\'' +
+                '}';
+    }
 }

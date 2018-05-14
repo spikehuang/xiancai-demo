@@ -10,8 +10,6 @@ public class Goods {
 
     private String name;
 
-    private String thums;
-
     private String img;
 
     private BigDecimal price;
@@ -48,14 +46,6 @@ public class Goods {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getThums() {
-        return thums;
-    }
-
-    public void setThums(String thums) {
-        this.thums = thums;
     }
 
     public String getImg() {
@@ -114,4 +104,19 @@ public class Goods {
         this.updateTime = updateTime;
     }
 
+    @Override
+    public String toString() {
+        return "Goods{" +
+                "goodsId=" + goodsId +
+                ", userId=" + userId +
+                ", name='" + name + '\'' +
+                ", img='" + img + '\'' +
+                ", price=" + price +
+                ", catId=" + catId +
+                ", status=" + status +
+                ", description='" + description + '\'' +
+                ", createTime='" + createTime + '\'' +
+                ", updateTime='" + updateTime + '\'' +
+                '}';
+    }
 }

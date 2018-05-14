@@ -45,9 +45,9 @@
         WHERE user_id = #{userId, jdbcType=INTEGER}
     </update>
 
-    <delete id="removeUserByUserId" parameterType="java.lang.Integer" >
+    <delete id="removeUserByUserId" parameterType="java.lang.Long" >
         DELETE FROM t_user
-        where user_id = #{userId, jdbcType=VARCHAR}
+        where user_id = #{userId, jdbcType=BIGINT}
     </delete>
 
     <select id="listUsers" resultMap="BaseResultMap">

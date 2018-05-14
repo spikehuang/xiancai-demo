@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="io.spike.mapper.GoodsMapper">
+    <resultMap id="BaseResultMap" type="io.spike.domain.Goods">
+        <result column="goods_id" property="goodsId" jdbcType="BIGINT" />
+        <result column="user_id" property="userId" jdbcType="BIGINT" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="img" property="img" jdbcType="VARCHAR" />
+        <result column="price" property="price" jdbcType="DECIMAL" />
+        <result column="cat_id" property="catId" jdbcType="INTEGER" />
+        <result column="status" property="status" jdbcType="TINYINT" />
+        <result column="description" property="description" jdbcType="VARCHAR" />
+        <result column="create_time_normal" property="createTime" jdbcType="VARCHAR" />
+        <result column="update_time_normal" property="updateTime" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="listGoods" resultMap="BaseResultMap">
+        SELECT goods_id, user_id, name, img, price, cat_id, status, description,
+        DATE_FORMAT(FROM_UNIXTIME(create_time), '%Y-%m-%d') create_time_normal,
+        DATE_FORMAT(FROM_UNIXTIME(update_time), '%Y-%m-%d') update_time_normal
+        FROM t_goods
+    </select>
+
+    <insert id="saveGoods" parameterType="io.spike.domain.Goods">
+        INSERT INTO t_goods
+        (user_id, name, img, price, cat_id, description, create_time, update_time)
+        VALUES
+        (#{userId, jdbcType = BIGINT},
+        #{name, jdbcType = VARCHAR},
+        #{img, jdbcType = VARCHAR},
+        #{price, jdbcType = DECIMAL},
+        #{catId, jdbcType = INTEGER},
+        #{description, jdbcType = VARCHAR},
+        UNIX_TIMESTAMP(NOW()),
+        UNIX_TIMESTAMP(NOW()))
+    </insert>
+
+    <select id="listGoodsByUserId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        SELECT goods_id, user_id, name, img, price, cat_id, status, description,
+        DATE_FORMAT(FROM_UNIXTIME(create_time), '%Y-%m-%d') create_time_normal,
+        DATE_FORMAT(FROM_UNIXTIME(update_time), '%Y-%m-%d') update_time_normal
+        FROM t_goods
+        WHERE user_id = #{userId, jdbcType = BIGINT}
+    </select>
+
+    <delete id="removeGoodsById" parameterType="java.lang.Long" >
+        DELETE FROM t_goods
+        where goods_id = #{goodsId, jdbcType=BIGINT}
+    </delete>
+
+    <select id="getGoodsById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        SELECT goods_id, user_id, name, img, price, cat_id, status, description,
+        DATE_FORMAT(FROM_UNIXTIME(create_time), '%Y-%m-%d') create_time_normal,
+        DATE_FORMAT(FROM_UNIXTIME(update_time), '%Y-%m-%d') update_time_normal
+        FROM t_goods
+        WHERE goods_id = #{goodsId, jdbcType = BIGINT}
+    </select>
+
+    <!--
+    <update id="updateUserByUserId" parameterType="io.spike.domain.User" >
+        UPDATE t_user SET
+        username = #{username, jdbcType=VARCHAR},
+        password = #{password, jdbcType=VARCHAR},
+        real_name = #{realName, jdbcType=VARCHAR},
+        phone = #{phone, jdbcType=VARCHAR},
+        address = #{address, jdbcType=VARCHAR},
+        update_time = UNIX_TIMESTAMP(NOW())
+        WHERE user_id = #{userId, jdbcType=INTEGER}
+    </update>
+
+    <select id="listUsers" resultMap="BaseResultMap">
+        SELECT user_id, username, password, real_name, phone, address,
+        CASE user_type WHEN 0 THEN '普通会员' WHEN 1 THEN '管理员' END,
+        DATE_FORMAT(FROM_UNIXTIME(create_time), '%Y-%m-%d') create_time_normal,
+        DATE_FORMAT(FROM_UNIXTIME(update_time), '%Y-%m-%d') update_time_normal
+        FROM t_user
+        ORDER BY create_time, update_time
+    </select>
+-->
+
+</mapper>

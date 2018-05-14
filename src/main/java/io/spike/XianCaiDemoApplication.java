@@ -7,8 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
-@EnableTransactionManagement
-@EnableAutoConfiguration
+//@EnableTransactionManagement
+//@EnableAutoConfiguration
 @MapperScan("io.spike.mapper")
 public class XianCaiDemoApplication {
 
