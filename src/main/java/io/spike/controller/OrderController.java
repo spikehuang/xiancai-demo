@@ -20,6 +20,6 @@ public class OrderController {
     @GetMapping("/orders/user/{userId}")
     public Result listOrdersByUserId(@PathVariable("userId") Long userId) {
         List<Order> orders = orderService.listOrdersByUserId(userId);
-        return new Result(StateEnum.SUCCESS, orders);
+        return new Result<>(StateEnum.SUCCESS, orders);
     }
 }

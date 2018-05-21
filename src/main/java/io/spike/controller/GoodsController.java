@@ -18,30 +18,25 @@ public class GoodsController {
     @GetMapping("/goods")
     public Result listGoods() {
         List<Goods> goods = goodsService.listGoods();
-        return new Result(StateEnum.SUCCESS, goods);
+        return new Result<>(StateEnum.SUCCESS, goods);
     }
 
     @PostMapping(value = "/goods", consumes = "application/json;charset=utf-8")
     public Result saveGoods(@RequestBody Goods goods) {
         int insertCount = goodsService.saveGoods(goods);
-        return new Result(StateEnum.SUCCESS, insertCount);
+        return new Result<>(StateEnum.SUCCESS, insertCount);
     }
 
     @GetMapping("/user/{userId}/goods")
     public Result listGoodsByUserId(@PathVariable("userId") Long userId) {
         List<Goods> goods = goodsService.listGoodsByUserId(userId);
-        return new Result(StateEnum.SUCCESS, goods);
+        return new Result<>(StateEnum.SUCCESS, goods);
     }
 
     @DeleteMapping("/goods/{goodsId}")
     public Result removeGoodsById(@PathVariable("goodsId") Long goodsId) {
         int deleteCount = goodsService.removeGoodsById(goodsId);
-        return new Result(StateEnum.SUCCESS, deleteCount);
+        return new Result<>(StateEnum.SUCCESS, deleteCount);
     }
 
-    @GetMapping("/goods/{goodsId}")
-    public Result getGoodsById(@PathVariable("goodsId") Long goodsId) {
-        Goods goods = goodsService.getGoodsById(goodsId);
-        return new Result(StateEnum.SUCCESS, goods);
-    }
 }

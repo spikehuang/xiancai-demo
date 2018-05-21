@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <title>task</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap-theme.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/jquery-confirm.min.css}"/>
+    <script type="text/javascript" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery-confirm.min.js}"></script>
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body>
+    <div th:include="common/header :: header"></div>
+    <!--<div th:text="${result.data.goodsId}"></div>-->
+    <div class="jumbotron">
+        <div id="main">
+        <div class="row" style="margin-top: 20px">
+            <div class="col-md-6 col-md-offset-2">
+                <div class="detail" style="background-color: #fff;border-radius: 5px;border: #e5e5e5 solid 1px;">
+                    <div class="title">
+                        <div class="publish-time" th:text="'发布于：' + ${result.data.createTime}" style="font-size: 13px;color: #ccc;padding: 20px 30px;"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="picture" style="margin: 20px;">
+                                <img th:src="@{/img/guitar1525233523.jpg}"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div th:include="common/footer :: footer"></div>
+</body>
+</html>

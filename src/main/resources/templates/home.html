@@ -10,130 +10,105 @@
     <script type="text/javascript" th:src="@{/js/jquery-3.3.1.min.js}"></script>
     <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/jquery-confirm.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/masonry.pkgd.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/home.js}"></script>
     <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
 </head>
 <body>
-<div id="header">
-    <nav class="navbar navbar-inverse navbar-fixed-top" style="position: relative">
-        <p style="color: white;position: absolute;top: 50%;transform: translateY(-50%);font-size: 20px;margin-left: 20px">
-            DJTU 二手交易平台</p>
-        <ul class="nav navbar-nav navbar-right" style="margin-right: 20px;">
-            <li><a href="/xiancai/register">注册</a></li>
-            <li><a href="/xiancai/login">登陆</a></li>
-        </ul>
-    </nav>
-</div>
-<div id="body">
-    <div class="row">
-        <div class="col-md-3 col-md-offset-3">
-            <div class="input-group">
-                <input type="text" class="form-control" id="keyWordInput" placeholder="请输入关键字" />
-                    <span class="input-group-btn">
-                        <button class="btn btn-success" id="searchButton">搜索</button>
-                    </span>
+    <div th:include="common/header :: header"></div>
+    <div class="jumbotron">
+        <div id="main">
+        <div class="row">
+            <div class="col-md-2 col-md-offset-2">
+                <ul class="nav nav-pills nav-stacked">
+                    <li role="presentation" class="active"><a href="#">所有分类</a></li>
+                    <li role="presentation"><a href="#">日用百货</a></li>
+                    <li role="presentation"><a href="#">电子产品</a></li>
+                    <li role="presentation"><a href="#">鞋帽配饰</a></li>
+                    <li role="presentation"><a href="#">图书</a></li>
+                    <li role="presentation"><a href="#">宠物</a></li>
+                    <li role="presentation"><a href="#">乐器</a></li>
+                </ul>
             </div>
-        </div>
-        <div class="col-md-3 col-md-offset-2">
-            <button type="button" class="btn btn-default" id="distributeButton">
-                <span class="glyphicon glyphicon-pencil"></span> 发布商品
-            </button>
-        </div>
-    </div>
-    <div class="row" style="margin-top: 20px">
-        <div class="col-md-1 col-md-offset-3">
-            <ul class="nav nav-pills nav-stacked">
-                <li role="presentation" class="active"><a href="#">所有分类</a></li>
-                <li role="presentation"><a href="#">日用百货</a></li>
-                <li role="presentation"><a href="#">电子产品</a></li>
-                <li role="presentation"><a href="#">鞋帽配饰</a></li>
-                <li role="presentation"><a href="#">图书</a></li>
-                <li role="presentation"><a href="#">宠物</a></li>
-                <li role="presentation"><a href="#">乐器</a></li>
-            </ul>
-        </div>
-        <div class="col-md-5">
-            <div class="row">
-                <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail">
-                        <a th:href="@{/goods/70001/detail}">
-                            <img th:src="@{/img/guitar1525233523.jpg}"
-                                 alt="HTC ONE" />
-                        </a>
-                        <div class="caption">
-                            <p>40寸吉他</p>
-                            <p style="color: #FF0000;">￥150.88</p>
+            <div class="col-md-6" id="goodsContainer">
+                <div class="row">
+                    <div class="col-sm-6 col-md-4">
+                        <div class="thumbnail">
+                            <a th:href="@{/goods/70001/detail}">
+                                <img th:src="@{/img/guitar1525233523.jpg}"
+                                     alt="HTC ONE"/>
+                            </a>
+                            <div class="caption">
+                                <p>40寸吉他</p>
+                                <p style="color: #FF0000;">￥150.88</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail">
-                        <a th:href="@{/goods/70001/detail}">
-                            <img th:src="@{/img/htcone1525233132.jpg}"
-                                 alt="HTC ONE" />
-                        </a>
-                        <div class="caption">
-                            <p>HTC ONE</p>
-                            <p style="color: #FF0000;">￥800</p>
+                    <div class="col-sm-6 col-md-4">
+                        <div class="thumbnail">
+                            <a th:href="@{/goods/70001/detail}">
+                                <img th:src="@{/img/guitar1525233523.jpg}"
+                                     alt="HTC ONE"/>
+                            </a>
+                            <div class="caption">
+                                <p>40寸吉他</p>
+                                <p style="color: #FF0000;">￥150.88</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail">
-                        <a th:href="@{/goods/70001/detail}">
-                            <img th:src="@{/img/tij1525233802.jpg}"
-                                 alt="HTC ONE" />
-                        </a>
-                        <div class="caption">
-                            <p>Java编程思想</p>
-                            <p style="color: #FF0000;">￥35</p>
+                    <div class="col-sm-6 col-md-4">
+                        <div class="thumbnail">
+                            <a th:href="@{/goods/70001/detail}">
+                                <img th:src="@{/img/htcone1525233132.jpg}"
+                                     alt="HTC ONE"/>
+                            </a>
+                            <div class="caption">
+                                <p>HTC ONE</p>
+                                <p style="color: #FF0000;">￥800</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail">
-                        <a th:href="@{/goods/70001/detail}">
-                            <img th:src="@{/img/guitar1525233523.jpg}"
-                                 alt="HTC ONE" />
-                        </a>
-                        <div class="caption">
-                            <p>40寸吉他</p>
-                            <p style="color: #FF0000;">￥150.88</p>
+                    <div class="col-sm-6 col-md-4">
+                        <div class="thumbnail">
+                            <a th:href="@{/goods/70001/detail}">
+                                <img th:src="@{/img/htcone1525233132.jpg}"
+                                     alt="HTC ONE"/>
+                            </a>
+                            <div class="caption">
+                                <p>HTC ONE</p>
+                                <p style="color: #FF0000;">￥800</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail">
-                        <a th:href="@{/goods/70001/detail}">
-                            <img th:src="@{/img/guitar1525233523.jpg}"
-                                 alt="HTC ONE" />
-                        </a>
-                        <div class="caption">
-                            <p>40寸吉他</p>
-                            <p style="color: #FF0000;">￥150.88</p>
+                    <div class="col-sm-6 col-md-4">
+                        <div class="thumbnail">
+                            <a th:href="@{/goods/70001/detail}">
+                                <img th:src="@{/img/htcone1525233132.jpg}"
+                                     alt="HTC ONE"/>
+                            </a>
+                            <div class="caption">
+                                <p>HTC ONE</p>
+                                <p style="color: #FF0000;">￥800</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail">
-                        <a th:href="@{/goods/70001/detail}">
-                            <img th:src="@{/img/guitar1525233523.jpg}"
-                                 alt="HTC ONE" />
-                        </a>
-                        <div class="caption">
-                            <p>40寸吉他</p>
-                            <p style="color: #FF0000;">￥150.88</p>
+                    <div class="col-sm-6 col-md-4">
+                        <div class="thumbnail">
+                            <a th:href="@{/goods/70001/detail}">
+                                <img th:src="@{/img/tij1525233802.jpg}"
+                                     alt="HTC ONE"/>
+                            </a>
+                            <div class="caption">
+                                <p>Java编程思想</p>
+                                <p style="color: #FF0000;">￥35</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <footer class="footer navbar-fixed-bottom ">
-        <div class="container">
-            <p style="text-align: center">© Copyright 2018 DJTU二手交易平台 By R机械131黄皓</p>
-        </div>
-    </footer>
-</div>
+    </div>
+    <div th:include="common/footer :: footer"></div>
 </body>
 </html>
