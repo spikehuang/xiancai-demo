@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <title>task</title>
+    <title>DJTU二手交易平台</title>
     <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}"/>
     <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap-theme.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/home.css}"/>
@@ -19,88 +19,25 @@
     <div class="jumbotron">
         <div id="main">
         <div class="row">
-            <div class="col-md-2 col-md-offset-2">
+            <div class="col-md-2 col-md-offset-2" id="category">
                 <ul class="nav nav-pills nav-stacked">
                     <li role="presentation" class="active"><a href="#">所有分类</a></li>
-                    <li role="presentation"><a href="#">日用百货</a></li>
-                    <li role="presentation"><a href="#">电子产品</a></li>
-                    <li role="presentation"><a href="#">鞋帽配饰</a></li>
-                    <li role="presentation"><a href="#">图书</a></li>
-                    <li role="presentation"><a href="#">宠物</a></li>
-                    <li role="presentation"><a href="#">乐器</a></li>
+                </ul>
+                <ul class="nav nav-pills nav-stacked" th:each="cat : ${cats.data}">
+                    <li role="presentation"><a href="#" th:text="${cat.catName}">日用百货</a></li>
                 </ul>
             </div>
             <div class="col-md-6" id="goodsContainer">
                 <div class="row">
-                    <div class="col-sm-6 col-md-4">
+                    <div class="col-sm-6 col-md-4" th:each="goods : ${result.data}">
                         <div class="thumbnail">
-                            <a th:href="@{/goods/70001/detail}">
-                                <img th:src="@{/img/guitar1525233523.jpg}"
-                                     alt="HTC ONE"/>
+                            <a th:href="@{'/goods/' + ${goods.goodsId} + '/detail'}" target="_blank">
+                                <img th:src="@{${goods.img}}"
+                                     alt="${@{goods.name}}"/>
                             </a>
                             <div class="caption">
-                                <p>40寸吉他</p>
-                                <p style="color: #FF0000;">￥150.88</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4">
-                        <div class="thumbnail">
-                            <a th:href="@{/goods/70001/detail}">
-                                <img th:src="@{/img/guitar1525233523.jpg}"
-                                     alt="HTC ONE"/>
-                            </a>
-                            <div class="caption">
-                                <p>40寸吉他</p>
-                                <p style="color: #FF0000;">￥150.88</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4">
-                        <div class="thumbnail">
-                            <a th:href="@{/goods/70001/detail}">
-                                <img th:src="@{/img/htcone1525233132.jpg}"
-                                     alt="HTC ONE"/>
-                            </a>
-                            <div class="caption">
-                                <p>HTC ONE</p>
-                                <p style="color: #FF0000;">￥800</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4">
-                        <div class="thumbnail">
-                            <a th:href="@{/goods/70001/detail}">
-                                <img th:src="@{/img/htcone1525233132.jpg}"
-                                     alt="HTC ONE"/>
-                            </a>
-                            <div class="caption">
-                                <p>HTC ONE</p>
-                                <p style="color: #FF0000;">￥800</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4">
-                        <div class="thumbnail">
-                            <a th:href="@{/goods/70001/detail}">
-                                <img th:src="@{/img/htcone1525233132.jpg}"
-                                     alt="HTC ONE"/>
-                            </a>
-                            <div class="caption">
-                                <p>HTC ONE</p>
-                                <p style="color: #FF0000;">￥800</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4">
-                        <div class="thumbnail">
-                            <a th:href="@{/goods/70001/detail}">
-                                <img th:src="@{/img/tij1525233802.jpg}"
-                                     alt="HTC ONE"/>
-                            </a>
-                            <div class="caption">
-                                <p>Java编程思想</p>
-                                <p style="color: #FF0000;">￥35</p>
+                                <p th:text="${goods.name}"></p>
+                                <p style="color: #FF0000;" th:text="'￥' + ${goods.price}"></p>
                             </div>
                         </div>
                     </div>

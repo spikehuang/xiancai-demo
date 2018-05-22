@@ -19,6 +19,8 @@
         DATE_FORMAT(FROM_UNIXTIME(create_time), '%Y-%m-%d') create_time_normal,
         DATE_FORMAT(FROM_UNIXTIME(update_time), '%Y-%m-%d') update_time_normal
         FROM t_goods
+        WHERE status = 0
+        ORDER BY create_time DESC
     </select>
 
     <insert id="saveGoods" parameterType="io.spike.domain.Goods">
@@ -50,8 +52,8 @@
 
     <select id="getGoodsById" resultMap="BaseResultMap" parameterType="java.lang.Long">
         SELECT goods_id, user_id, name, img, price, cat_id, status, description,
-        DATE_FORMAT(FROM_UNIXTIME(create_time), '%Y-%m-%d') create_time_normal,
-        DATE_FORMAT(FROM_UNIXTIME(update_time), '%Y-%m-%d') update_time_normal
+        DATE_FORMAT(FROM_UNIXTIME(create_time), '%Y-%m-%d %H:%i:%s') create_time_normal,
+        DATE_FORMAT(FROM_UNIXTIME(update_time), '%Y-%m-%d %H:%i:%s') update_time_normal
         FROM t_goods
         WHERE goods_id = #{goodsId, jdbcType = BIGINT}
     </select>

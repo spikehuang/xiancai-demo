@@ -1,0 +1,62 @@
+.detail {
+    background-color: #fff;
+    border-radius: 5px;
+    border: #e5e5e5 solid 1px;
+}
+
+.title {
+    border-bottom: #e5e5e5 solid 1px;
+}
+
+.publish-time {
+    font-size: 13px;
+    color: #ccc;
+    padding: 20px 30px;
+}
+
+.picture {
+    margin: 20px;
+}
+
+.goods-info {
+    margin: 20px;
+}
+
+.info-line {
+    margin: 30px 0px;
+}
+
+.param-name {
+    font-size: 16px;
+    color: #999;
+    width: 65px;
+    float: left;
+}
+
+.param-value {
+    margin: 30px;
+    font-size: 16px;
+}
+
+.goods-price {
+    margin: 30px;
+    color: #f40;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.buttons {
+    margin-top: 100px;
+}
+
+.goods-description {
+    margin: 20px;
+}
+
+img {
+    width: 100%;
+}
+
+button {
+    padding-right: 30px;
+}
