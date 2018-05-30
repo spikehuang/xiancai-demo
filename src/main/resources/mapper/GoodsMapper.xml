@@ -45,6 +45,7 @@
         WHERE user_id = #{userId, jdbcType = BIGINT}
     </select>
 
+
     <delete id="removeGoodsById" parameterType="java.lang.Long" >
         DELETE FROM t_goods
         where goods_id = #{goodsId, jdbcType=BIGINT}
@@ -58,6 +59,14 @@
         WHERE goods_id = #{goodsId, jdbcType = BIGINT}
     </select>
 
+    <select id="listGoodsByCat" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        SELECT goods_id, user_id, name, img, price, cat_id, status, description,
+        DATE_FORMAT(FROM_UNIXTIME(create_time), '%Y-%m-%d') create_time_normal,
+        DATE_FORMAT(FROM_UNIXTIME(update_time), '%Y-%m-%d') update_time_normal
+        FROM t_goods
+        WHERE cat_id = #{catId, jdbcType = INTEGER}
+        ORDER BY create_time DESC
+    </select>
     <!--
     <update id="updateUserByUserId" parameterType="io.spike.domain.User" >
         UPDATE t_user SET

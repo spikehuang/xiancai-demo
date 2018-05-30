@@ -7,37 +7,33 @@
     <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap-theme.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/home.css}"/>
     <link rel="stylesheet" th:href="@{/css/jquery-confirm.min.css}"/>
-    <script type="text/javascript" th:src="@{/js/jquery-3.3.1.min.js}"></script>
-    <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
-    <script type="text/javascript" th:src="@{/js/jquery-confirm.min.js}"></script>
-    <script type="text/javascript" th:src="@{/js/masonry.pkgd.min.js}"></script>
-    <script type="text/javascript" th:src="@{/js/home.js}"></script>
-    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
 </head>
 <body>
-    <div th:include="common/header :: header"></div>
+    <div th:include="common/header-nav :: header-nav"></div>
+    <div th:include="common/header-search :: header-search"></div>
     <div class="jumbotron">
         <div id="main">
-        <div class="row">
-            <div class="col-md-2 col-md-offset-2" id="category">
-                <ul class="nav nav-pills nav-stacked">
-                    <li role="presentation" class="active"><a href="#">所有分类</a></li>
-                </ul>
-                <ul class="nav nav-pills nav-stacked" th:each="cat : ${cats.data}">
-                    <li role="presentation"><a href="#" th:text="${cat.catName}">日用百货</a></li>
-                </ul>
-            </div>
-            <div class="col-md-6" id="goodsContainer">
-                <div class="row">
-                    <div class="col-sm-6 col-md-4" th:each="goods : ${result.data}">
-                        <div class="thumbnail">
-                            <a th:href="@{'/goods/' + ${goods.goodsId} + '/detail'}" target="_blank">
-                                <img th:src="@{${goods.img}}"
-                                     alt="${@{goods.name}}"/>
-                            </a>
-                            <div class="caption">
-                                <p th:text="${goods.name}"></p>
-                                <p style="color: #FF0000;" th:text="'￥' + ${goods.price}"></p>
+            <div class="row">
+                <div class="col-md-2 col-md-offset-2" id="category">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li role="presentation" class="active catsList"><a th:href="@{/}">所有分类</a></li>
+                    </ul>
+                    <ul class="nav nav-pills nav-stacked" th:each="cat : ${cats.data}">
+                        <li role="presentation" class="catsList" th:attr="id='cat-' + ${cat.catId}"><a href="#" th:text="${cat.catName}">日用百货</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-6" id="goodsContainer">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-4" th:each="goods : ${result.data}" id="coreContainer">
+                            <div class="thumbnail">
+                                <a th:href="@{'/goods/' + ${goods.goodsId} + '/detail'}" target="_blank">
+                                    <img th:src="@{${goods.img}}"
+                                         alt="${@{goods.name}}"/>
+                                </a>
+                                <div class="caption">
+                                    <p th:text="${goods.name}"></p>
+                                    <p style="color: #FF0000;" th:text="'￥' + ${goods.price}"></p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -45,7 +41,11 @@
             </div>
         </div>
     </div>
-    </div>
     <div th:include="common/footer :: footer"></div>
 </body>
+<script type="text/javascript" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery-confirm.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/masonry.pkgd.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/home.js}"></script>
 </html>

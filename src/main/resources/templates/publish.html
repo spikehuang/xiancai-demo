@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <title>商品发布页 - DJTU</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap-theme.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/jquery-confirm.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/publish.css}"/>
+</head>
+<body>
+<div th:include="common/header-nav :: header-nav"></div>
+<!--<div th:include="common/header-search :: header-search"></div>
+<div id="loginModal" class="modal fade">
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title text-center">
+                    请登陆:
+                </h3>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-8 col-xs-offset-2">
+                        <input type="text" name="username" id="username"
+                               placeholder="填写手机号^o^" class="form-control" />
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 20px;">
+                    <div class="col-xs-8 col-xs-offset-2">
+                        <input type="password" name="password" id="password"
+                               placeholder="填写密码（⊙o⊙）" class="form-control" />
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 20px;">
+                    <div class="col-xs-5 col-xs-offset-6">
+                        <p>还没有账号？<a th:href="@{/register.html}">立即注册</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" id="loginButton" class="btn btn-success">
+                    登陆
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<div class="jumbotron">
+    <div id="main">
+        <div class="row">
+            <div class="col-md-7 col-md-offset-2">
+                <div class="detail">
+                    <div class="title">
+                        <div class="publish-time" th:text="'发布于：' + ${result.data.createTime}"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="picture">
+                                <img th:src="@{${result.data.img}}" alt="${@{result.data.name}}" class="img-rounded"/>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="goods-info">
+                                <h4 th:text="${result.data.name}"></h4>
+                                <div class="info-line">
+                                    <span class="param-name">价格</span>
+                                    <span class="goods-price" th:text="'￥' + ${result.data.price}"></span>
+                                </div>
+                                <div class="info-line">
+                                    <span class="param-name">交易方式</span>
+                                    <span class="param-value">线下交易</span>
+                                </div>
+                                <div class="info-line buttons">
+                                    <button class="btn btn-success" id="buyButton"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;购买</button>
+                                    <button class="btn btn-default" style="margin-left: 20px;" id="likeButton"><span class="glyphicon glyphicon-heart"></span>&nbsp;收藏</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="goods-description">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">二货描述</h3>
+                            </div>
+                            <div class="panel-body" th:text="${result.data.description}">
+                                Panel content
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+<div class="jumbotron">
+    <div class="row" id="title">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    发布商品
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="panel panel-default">
+                <div class="main" style="padding: 15px;">
+                    <form class="form-horizontal" id="insertForm">
+                        <div class="form-group" style="position:relative">
+                            <label class="col-md-3 control-label">上传图片</label>
+                            <div class="col-md-5">
+                                <input type="file" id="img"/>
+                            </div>
+                        </div>
+                        <div class="form-group" style="position:relative">
+                            <label class="col-md-3 control-label">商品名称</label>
+                            <div class="col-md-5">
+                                <input type="text" class="form-control" id="goodsName"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">价格</label>
+                            <div class="input-group col-md-5" style="padding: 0px 15px;">
+                                <div class="input-group-addon">￥</div>
+                                <input type="text" class="form-control" id="price"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">分类</label>
+                            <div class="col-md-5">
+                                <input type="password" class="form-control" id="cat"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">描述</label>
+                            <div class="col-md-5">
+                                <textarea class="form-control" rows="3" id="description"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group" id="publish">
+                            <button id="publishButton" type="button" class="btn btn-success">确认发布</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:include="common/footer :: footer"></div>
+</body>
+<script type="text/javascript" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery-confirm.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/js.cookie.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/publish.js}"></script>
+</html>

@@ -1,0 +1,12 @@
+<div th:fragment="header-nav">
+    <nav class="navbar navbar-inverse navbar-fixed-top" style="position: relative;margin-bottom: 0px;">
+        <a th:href="@{/home}">
+            <p style="color: white;position: absolute;top: 50%;transform: translateY(-50%);font-size: 20px;margin-left: 20px">
+                DJTU 二手交易平台</p>
+        </a>
+        <ul class="nav navbar-nav navbar-right" style="margin-right: 20px;">
+            <li><a th:href="@{/register}">注册</a></li>
+            <li><a th:href="@{/login}">登陆</a></li>
+        </ul>
+    </nav>
+</div>

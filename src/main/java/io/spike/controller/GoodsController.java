@@ -39,4 +39,10 @@ public class GoodsController {
         return new Result<>(StateEnum.SUCCESS, deleteCount);
     }
 
+    @GetMapping("/goods/cat/{catId}")
+    public Result listGoodsByCat(@PathVariable("catId") Integer catId) {
+        List<Goods> goods = goodsService.listGoodsByCat(catId);
+        return new Result<>(StateEnum.SUCCESS, goods);
+    }
+
 }

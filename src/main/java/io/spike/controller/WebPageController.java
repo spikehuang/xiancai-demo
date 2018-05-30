@@ -54,4 +54,9 @@ public class WebPageController {
         return "/goods";
     }
 
+    @GetMapping("/publish")
+    public String publish() {
+        return "/publish";
+    }
+
 }

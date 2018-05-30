@@ -15,7 +15,7 @@ CREATE TABLE t_user(
 `create_time` INT(11) NOT NULL COMMENT '创建时间',
 `update_time` INT(11) NOT NULL COMMENT '更新时间',
 PRIMARY KEY (user_id),
-UNIQUE KEY (phone),
+UNIQUE (phone),
 KEY idx_create_time(create_time) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=7000 DEFAULT CHARSET=utf8 COMMENT '用户信息表';
 

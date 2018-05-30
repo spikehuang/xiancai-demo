@@ -15,4 +15,6 @@ public interface GoodsService {
     int removeGoodsById(Long goodsId);
 
     Goods getGoodsById(Long goodsId);
+
+    List<Goods> listGoodsByCat(Integer catId);
 }

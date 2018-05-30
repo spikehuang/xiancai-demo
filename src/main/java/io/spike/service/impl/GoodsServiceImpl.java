@@ -38,4 +38,9 @@ public class GoodsServiceImpl implements GoodsService {
     public Goods getGoodsById(Long goodsId) {
         return goodsMapper.getGoodsById(goodsId);
     }
+
+    @Override
+    public List<Goods> listGoodsByCat(Integer catId) {
+        return goodsMapper.listGoodsByCat(catId);
+    }
 }

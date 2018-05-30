@@ -3,29 +3,48 @@ $(function() {
 //    $(document).ready(function() {
 //        showGoods();
 //    });
-//
-//    function showGoods() {
-//
-//        	$("#goodsContainer").html("");
-//            tableCode = "";
-//
-//        	$.get(
-//        		"/endecrypt/tasks",
-//        		function(data) {
-//
-//                    for (var i = 0; i < data.length; i++) {
-//                        tableCode += "<tr><td class = 'taskId'>" + data[i].taskId + "</td>";
-//                        tableCode += "<td>" + data[i].type + "</td>";
-//                        tableCode += "<td>" + data[i].inputInfo + "</td>";
-//                        tableCode += "<td>" + data[i].outputInfo + "</td>";
-//                        tableCode += "<td>" + data[i].enabled + "</td>";
-//                        tableCode += "<td>" + data[i].createTime + "</td>";
-//                        tableCode += "<td>" + data[i].updateTime + "</td><td><button type='button' class='btn btn-primary btn-xs updateButton'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></button>&nbsp;&nbsp;<button type='button' class='btn btn-danger btn-xs removeButton'><span class='glyphicon glyphicon-remove' aria-hidden='true'></span></button></td></tr>";
-//                    }
-//
-//                    $("#taskTable").html(tableCode);
-//        		}
-//        	);
-//        }
+
+    $("#distributeButton").click(function() {
+        location.href = '/xiancai/publish';
+    });
+
+    $(".catsList").click(function() {
+        var liId = $(this).attr("id");
+//        console.log($(this).attr("id"));
+        $(".active").removeClass("active");
+        $("#" + liId).addClass("active");
+
+        var catId = liId.split("-")[1];
+
+        $.ajax({
+            url: "/xiancai/goods/cat/" + catId,
+            async: false,
+            success: function(result) {
+                if (result.code == 1) {
+                    $("#goodsContainer").hide().html("");
+                    var goodsContainerHtml = "";
+                    var goodsList = result.data;
+                    goodsContainerHtml = "<div class='row'>";
+                    for (var i = 0; i < goodsList.length; i++) {
+                        goodsContainerHtml +=
+                            "<div class='col-sm-6 col-md-4'>" +
+                                "<div class='thumbnail'>" +
+                                    "<a href='/xiancai/goods/" + goodsList[i].goodsId + "/detail' target='_blank'>" +
+                                        "<img src='/xiancai" + goodsList[i].img + "' alt='" + goodsList[i].name + "'/>" +
+                                    "</a>" +
+                                    "<div class='caption'>" +
+                                        "<p>" + goodsList[i].name + "</p>" +
+                                        "<p style='color: #FF0000;'>￥" + goodsList[i].price + "</p>" +
+                                    "</div>" +
+                                "</div>" +
+                            "</div>"
+                    }
+                    goodsContainerHtml += "</div>";
+                    $("#goodsContainer").html(goodsContainerHtml).show();
+                }
+
+            }
+        });
+    });
 
 });
