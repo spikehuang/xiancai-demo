@@ -5,9 +5,7 @@ import io.spike.domain.Result;
 import io.spike.enums.StateEnum;
 import io.spike.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,4 +20,11 @@ public class OrderController {
         List<Order> orders = orderService.listOrdersByUserId(userId);
         return new Result<>(StateEnum.SUCCESS, orders);
     }
+
+    @PostMapping(value = "/orders", consumes = "application/json;charset=utf-8")
+    public Result buyGoods(@RequestBody Object requestInfo) {
+
+        return null;
+    }
+
 }

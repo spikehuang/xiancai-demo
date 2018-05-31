@@ -1,6 +1,7 @@
 package io.spike.mapper;
 
 import io.spike.domain.Goods;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -19,4 +20,8 @@ public interface GoodsMapper {
     Goods getGoodsById(Long goodsId);
 
     List<Goods> listGoodsByCat(Integer catId);
+
+    List<Goods> listGoodsByName(@Param("name") String name);
+
+    int updateStatusById(Long goodsId, Integer status);
 }

@@ -17,4 +17,6 @@ public interface GoodsService {
     Goods getGoodsById(Long goodsId);
 
     List<Goods> listGoodsByCat(Integer catId);
+
+    List<Goods> listGoodsByName(String name);
 }

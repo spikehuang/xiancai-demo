@@ -65,20 +65,29 @@
         DATE_FORMAT(FROM_UNIXTIME(update_time), '%Y-%m-%d') update_time_normal
         FROM t_goods
         WHERE cat_id = #{catId, jdbcType = INTEGER}
+        AND status = 0
         ORDER BY create_time DESC
     </select>
-    <!--
-    <update id="updateUserByUserId" parameterType="io.spike.domain.User" >
-        UPDATE t_user SET
-        username = #{username, jdbcType=VARCHAR},
-        password = #{password, jdbcType=VARCHAR},
-        real_name = #{realName, jdbcType=VARCHAR},
-        phone = #{phone, jdbcType=VARCHAR},
-        address = #{address, jdbcType=VARCHAR},
+
+    <select id="listGoodsByName" resultMap="BaseResultMap" parameterType="java.lang.String">
+        SELECT goods_id, user_id, name, img, price, cat_id, status, description,
+        DATE_FORMAT(FROM_UNIXTIME(create_time), '%Y-%m-%d') create_time_normal,
+        DATE_FORMAT(FROM_UNIXTIME(update_time), '%Y-%m-%d') update_time_normal
+        FROM t_goods
+        WHERE name LIKE CONCAT('%', '${name}', '%')
+        AND status = 0
+        ORDER BY create_time DESC
+    </select>
+
+
+    <update id="updateStatusById" parameterType="io.spike.domain.Goods" >
+        UPDATE t_goods SET
+        status = #{status, jdbcType=TINYINT},
         update_time = UNIX_TIMESTAMP(NOW())
-        WHERE user_id = #{userId, jdbcType=INTEGER}
+        WHERE goods_id = #{goodsId, jdbcType=BIGINT}
     </update>
 
+<!--
     <select id="listUsers" resultMap="BaseResultMap">
         SELECT user_id, username, password, real_name, phone, address,
         CASE user_type WHEN 0 THEN '普通会员' WHEN 1 THEN '管理员' END,

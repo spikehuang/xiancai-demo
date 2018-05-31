@@ -43,4 +43,9 @@ public class GoodsServiceImpl implements GoodsService {
     public List<Goods> listGoodsByCat(Integer catId) {
         return goodsMapper.listGoodsByCat(catId);
     }
+
+    @Override
+    public List<Goods> listGoodsByName(String name) {
+        return goodsMapper.listGoodsByName(name);
+    }
 }

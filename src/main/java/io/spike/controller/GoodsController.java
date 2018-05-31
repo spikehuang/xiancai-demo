@@ -45,4 +45,10 @@ public class GoodsController {
         return new Result<>(StateEnum.SUCCESS, goods);
     }
 
+    @GetMapping("/goods/{name}")
+    public Result listGoodsByName(@PathVariable("name") String name) {
+        List<Goods> goods = goodsService.listGoodsByName(name);
+        return new Result<>(StateEnum.SUCCESS, goods);
+    }
+
 }

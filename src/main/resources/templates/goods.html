@@ -26,7 +26,7 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-xs-8 col-xs-offset-2">
-                            <input type="text" name="username" id="username"
+                            <input type="text" name="username" id="phone"
                                    placeholder="填写手机号^o^" class="form-control" />
                         </div>
                     </div>
@@ -44,6 +44,7 @@
                 </div>
 
                 <div class="modal-footer">
+                    <span id="loginMessage" class="glyphicon"></span>
                     <button type="button" id="loginButton" class="btn btn-success">
                         登陆
                     </button>
@@ -95,6 +96,9 @@
                                 </div>
                             </div>
                         </div>
+                        <input type="hidden" th:value="${result.data.goodsId}" id="goodsId"/>
+                        <input type="hidden" th:value="${result.data.price}" id="price"/>
+                        <input type="hidden" th:value="${result.data.name}" id="name"/>
                     </div>
                 </div>
             </div>

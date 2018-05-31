@@ -62,19 +62,19 @@ $(function() {
     };
 
     function flash(obj, time, range, speed) {
-            var $panel = $(obj);
-            var offset = $panel.offset() - $panel.width();
-            var x = offset.left;
-            var y = offset.top;
-            for (var i = 1; i <= time; i++) {
-                if (i % 2 == 0) {
-                    $panel.animate({left: '+' + range + 'px'}, speed);
-                } else {
-                    $panel.animate({left: '-' + range + 'px'}, speed);
-                }
+        var $panel = $(obj);
+        var offset = $panel.offset() - $panel.width();
+        var x = offset.left;
+        var y = offset.top;
+        for (var i = 1; i <= time; i++) {
+            if (i % 2 == 0) {
+                $panel.animate({left: '+' + range + 'px'}, speed);
+            } else {
+                $panel.animate({left: '-' + range + 'px'}, speed);
             }
-            $panel.animate({left: 0}, speed);
-            $panel.offset({top: y, left: x});
+        }
+        $panel.animate({left: 0}, speed);
+        $panel.offset({top: y, left: x});
     }
 
 });
