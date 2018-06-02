@@ -2,40 +2,65 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <title>task</title>
+    <title>登陆页 - DJTU</title>
     <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}"/>
     <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap-theme.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/form.css}"/>
     <link rel="stylesheet" th:href="@{/css/jquery-confirm.min.css}"/>
-    <script type="text/javascript" th:src="@{/js/jquery-3.3.1.min.js}"></script>
-    <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
-    <script type="text/javascript" th:src="@{/js/jquery-confirm.min.js}"></script>
-    <script type="text/javascript" th:src="@{/js/login.js}"></script>
-    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
 </head>
 <body>
-<div class="body">
-    <form class="form-horizontal" id="insertForm">
-        <div class="form-group" style="position:relative">
-            <label class="col-sm-2 control-label">手机号码</label>
-            <div class="col-sm-5">
-                <input type="text" class="form-control" id="phone"/>
-            </div>
-            <p id="existInfo" style="color: #a94442;padding: 5px;"></p>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label">密码</label>
-            <div class="col-sm-5">
-                <input type="password" class="form-control" id="password"/>
+<div th:include="common/header-nav :: header-nav"></div>
+<div class="jumbotron">
+    <div class="row" id="title">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    登陆
+                </div>
             </div>
         </div>
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button id="saveButton" type="button" class="btn btn-primary">登陆</button>
-                <button id="returnButton" type="button" class="btn btn-default" style="margin-left: 50px">返回</button>
+    </div>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="panel panel-default">
+                <div class="main" style="padding: 15px;">
+                    <form class="form-horizontal" id="insertForm">
+                        <div class="form-group" style="position:relative">
+                            <label class="col-sm-3 control-label">手机号码</label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" id="phone"/>
+                            </div>
+                            <p id="existInfo" style="color: #a94442;padding: 5px;"></p>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">密码</label>
+                            <div class="col-sm-5">
+                                <input type="password" class="form-control" id="password"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox col-sm-offset-3 col-sm-9">
+                                <label>
+                                    <input type="checkbox" /> 管理员模式
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-3 col-sm-9">
+                                <button id="saveButton" type="button" class="btn btn-primary">登陆</button>
+                                <button id="returnButton" type="button" class="btn btn-default" style="margin-left: 50px">返回</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </form>
+    </div>
 </div>
+<div th:include="common/footer :: footer"></div>
 </body>
+<script type="text/javascript" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery-confirm.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/login.js}"></script>
 </html>

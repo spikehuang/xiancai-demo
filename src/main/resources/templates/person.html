@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <title>个人中心 - DJTU</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap-theme.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/jquery-confirm.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/person.css}"/>
+</head>
+<body>
+<div th:include="common/header-nav :: header-nav"></div>
+<div class="jumbotron">
+    <div id="main">
+        <div class="row">
+            <div class="col-md-2 col-md-offset-2" id="category">
+                <div class="list-group">
+                    <a href="#" class="list-group-item active" id="person-item"><span class="glyphicon glyphicon-user"></span>&nbsp;个人信息</a>
+                    <a href="#" class="list-group-item" id="publish-item"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;我发布的</a>
+                    <a href="#" class="list-group-item" id="like-item"><span class="glyphicon glyphicon-heart-empty"></span>&nbsp;我想要的</a>
+                    <a href="#" class="list-group-item" id="suggest-item"><span class="glyphicon glyphicon-question-sign"></span>&nbsp;意见反馈</a>
+                </div>
+            </div>
+            <div class="col-md-6" id="detail">
+                <div class="row" id="person" style="display: block;">
+                    <div class="col-md-10 col-md-offset-1">
+                        <div class="main" style="padding: 15px;">
+                            <form class="form-horizontal" id="updateForm">
+                                <div class="form-group" style="position:relative">
+                                    <label class="col-sm-3 control-label">手机号码</label>
+                                    <div class="col-sm-5">
+                                        <input type="text" class="form-control" id="phone" th:field="${result.data.phone}"/>
+                                    </div>
+                                    <p id="existInfo" style="color: #a94442;padding: 5px;font-size: 16px;"></p>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">用户名</label>
+                                    <div class="col-sm-5">
+                                        <input type="text" class="form-control" id="username" th:field="${result.data.username}"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">密码</label>
+                                    <div class="col-sm-5">
+                                        <input type="password" class="form-control" id="password" th:field="${result.data.password}"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">真实姓名</label>
+                                    <div class="col-sm-5">
+                                        <input type="text" class="form-control" id="realName" th:field="${result.data.realName}"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">地址</label>
+                                    <div class="col-sm-5">
+                                        <input type="text" class="form-control" id="address" placeholder="非必填项" th:field="${result.data.address}"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-3 col-sm-9">
+                                        <button id="updateButton" type="button" class="btn btn-info" style="margin-top: 20px">修改个人信息</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="publish" style="display: none;">
+                    <div class="col-md-10 col-md-offset-1">
+                        <table class="table table-hover table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th>商品名</th>
+                                <th>价格</th>
+                                <th>创建时间</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody id="goodsTable">
+                                <tr>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row" id="suggest" style="display: none;">
+                    <form class="form-horizontal" id="insertForm">
+                        <div class="form-group">
+                            <div class="col-md-8 col-md-offset-2">
+                                <textarea class="form-control" rows="10" id="suggestion" placeholder="您的宝贵建议将使我们的网站更强大！"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-2 col-md-offset-5">
+                                <button id="suggestButton" type="button" class="btn btn-success">提交建议</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:include="common/footer :: footer"></div>
+</body>
+<script type="text/javascript" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery-confirm.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/js.cookie.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/person.js}"></script>
+<script type="text/javascript" th:src="@{/js/common/nav-bar.js}"></script>
+</html>

@@ -1,40 +1,17 @@
-.row {
-	margin-top: 20px;
+#title .panel {
+    display:flex;/*Flex布局*/
+    display: -webkit-flex; /* Safari */
+    align-items:center;/*指定垂直居中*/
+    justify-content:center;
 }
 
-button {
-    margin-left: 0px;
-    margin-bottom: 20px;
-    margin-top: 5px;
-    position: relative;
+#title .panel-body {
+    font-size: 20px;
 }
 
-textarea {
-    margin-top: 10px;
-}
-
-body {
-    margin: 20px 10px 0px 10px;
-}
-
-table {
-    margin-top: 10px;
-}
-
-.div-inline {
-    display:inline-block;
-}
-
-.retrieve {
-    float:right;
-    margin-bottom: 5px;
-}
-
-.calc-id {
-    margin-left: 10px;
-    margin-right: 10px;
-}
-
-.body {
-    margin: 100px;
+#publish {
+    display:flex;/*Flex布局*/
+    display: -webkit-flex; /* Safari */
+    align-items:center;/*指定垂直居中*/
+    justify-content:center;
 }

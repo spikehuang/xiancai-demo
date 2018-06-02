@@ -16,29 +16,8 @@ $(function() {
                 keyboard: false
             });
         }
-
-        var loginNavBar = $('.navbar-right');
-        loginNavBar.empty();
-        loginNavBar.html(
-            '<li class="dropdown">' +
-                '<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">' + currentUsername + '<span class="caret"></span></a>' +
-                '<ul class="dropdown-menu">' +
-                    '<li><a href="/xiancai/home">查看个人信息</a></li>' +
-                    '<li><a href="#">已购商品</a></li>' +
-                    '<li><a href="#">收藏夹</a></li>' +
-                    '<li role="separator" class="divider"></li>' +
-                    '<li><a href="#" id="logOut">退出登录</a></li>' +
-                '</ul>' +
-            '</li>'
-        );
     }
     
-    $('.navbar-right').on('click', '#logOut', function () {
-        Cookies.remove("username", { path: '/xiancai' });
-        Cookies.remove("userId", { path: '/xiancai' });
-        location.href = '/xiancai';
-    });
-
     $('#loginButton').click(function () {
         var inputPhone = $('#phone').val();
         var inputPassword = $('#password').val();

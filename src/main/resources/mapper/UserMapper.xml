@@ -21,6 +21,14 @@
         WHERE phone = #{phone, jdbcType = VARCHAR}
     </select>
 
+    <select id="getUserById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        SELECT user_id, username, password, real_name, phone, address, user_type,
+        DATE_FORMAT(FROM_UNIXTIME(create_time), '%Y-%m-%d') create_time_normal,
+        DATE_FORMAT(FROM_UNIXTIME(update_time), '%Y-%m-%d') update_time_normal
+        FROM t_user
+        WHERE user_id = #{userId, jdbcType = VARCHAR}
+    </select>
+
     <insert id="saveUser" parameterType="io.spike.domain.User">
         INSERT INTO t_user
         (username, password, real_name, phone, address, create_time, update_time)

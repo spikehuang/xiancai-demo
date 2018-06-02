@@ -37,8 +37,16 @@ public class UserController {
     }
 
     @PostMapping(value = "/user", consumes = "application/json;charset=utf-8")
-    public int saveUser(@RequestBody User user) {
-        return userService.saveUser(user);
+    public Result saveUser(@RequestBody User user) {
+        Result<String> result;
+        try {
+            userService.saveUser(user);
+            result = new Result<>(StateEnum.SUCCESS, "注册成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            result = new Result<>(StateEnum.FAIL, "注册失败");
+        }
+        return result;
     }
 
     @GetMapping("/user/{phone}")

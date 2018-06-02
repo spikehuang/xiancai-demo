@@ -1,6 +1,16 @@
 $(function() {
 
-    $("#distributeButton").click(function() {
+    $('.list-group-item').click(function () {
+        var liId = $(this).attr("id");
+        $(".active").removeClass("active");
+        $("#" + liId).addClass("active");
+
+        var catId = liId.split("-")[0];
+        $('div[style = "display: block;"]').css('display', 'none');
+        $('#' + catId).css('display', 'block');
+    });
+
+    /*$("#distributeButton").click(function() {
         location.href = '/xiancai/publish';
     });
 
@@ -10,15 +20,14 @@ $(function() {
             url: "/xiancai/goods/" + keyWord,
             async: true,
             success: function(result) {
-                if (result.code === 1) {
-                    var goodsContainer = $("#goodsContainer");
-                    goodsContainer.hide().html("");
+                if (result.code == 1) {
+                    $("#goodsContainer").hide().html("");
                     var goodsContainerHtml = "";
-                    if (result.data.length === 0) {
+                    if (result.data.length == 0) {
                         goodsContainerHtml +=
                             "<div style='display: flex;align-items:center;justify-content:center;'>" +
                                 "<img src='/xiancai/img/error.png' alt='未查找到商品'/>" +
-                                "<p style='margin: 15px 0 0 0'>未查找到商品</p>" +
+                                "<p style='margin: 15px 0px 0px 0px'>未查找到商品</p>" +
                             "</div>"
                     } else {
                         var goodsList = result.data;
@@ -39,7 +48,7 @@ $(function() {
                         }
                         goodsContainerHtml += "</div>";
                     }
-                    goodsContainer.html(goodsContainerHtml).show(500);
+                    $("#goodsContainer").html(goodsContainerHtml).show(500);
                 }
 
             }
@@ -47,7 +56,7 @@ $(function() {
     });
 
     $("body").keydown(function() {
-        if (event.keyCode === "13") {
+        if (event.keyCode == "13") {
             $('#searchButton').click();
         }
     });
@@ -64,15 +73,14 @@ $(function() {
             url: "/xiancai/goods/cat/" + catId,
             async: true,
             success: function(result) {
-                if (result.code === 1) {
-                    var goodsContainer = $("#goodsContainer");
-                    goodsContainer.hide().html("");
+                if (result.code == 1) {
+                    $("#goodsContainer").hide().html("");
                     var goodsContainerHtml = "";
-                    if (result.data.length === 0) {
+                    if (result.data.length == 0) {
                         goodsContainerHtml +=
                             "<div style='display: flex;align-items:center;justify-content:center;'>" +
                                 "<img src='/xiancai/img/error.png' alt='未查找到商品'/>" +
-                                "<p style='margin: 15px 0 0 0'>未查找到商品</p>" +
+                                "<p style='margin: 15px 0px 0px 0px'>未查找到商品</p>" +
                             "</div>"
                     } else {
                         var goodsList = result.data;
@@ -93,11 +101,11 @@ $(function() {
                         }
                         goodsContainerHtml += "</div>";
                     }
-                    goodsContainer.html(goodsContainerHtml).show(500);
+                    $("#goodsContainer").html(goodsContainerHtml).show(500);
                 }
 
             }
         });
-    });
+    });*/
 
 });

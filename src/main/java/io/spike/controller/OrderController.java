@@ -24,7 +24,6 @@ public class OrderController {
 
     @PostMapping(value = "/orders", consumes = "application/json;charset=utf-8")
     public Result buyGoods(@RequestBody BuyInfo buyInfo) {
-//        System.out.println(buyInfo.toString());
         int count = orderService.buyGoods(buyInfo.getUserId(), buyInfo.getGoodsId(), buyInfo.getPrice());
         if (count == 2) {
             return new Result<>(StateEnum.SUCCESS, "count: " + count);

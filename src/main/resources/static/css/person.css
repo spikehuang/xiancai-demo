@@ -1,0 +1,14 @@
+#detail {
+    background-color: #fff;
+    border-radius: 5px;
+    border: #e5e5e5 solid 1px;
+    height: 500px;
+    padding: 30px;
+}
+
+.list-group-item {
+    display:flex;/*Flex布局*/
+    display: -webkit-flex; /* Safari */
+    align-items:center;/*指定垂直居中*/
+    justify-content:center;
+}

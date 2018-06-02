@@ -10,7 +10,6 @@
 </head>
 <body>
 <div th:include="common/header-nav :: header-nav"></div>
-<!--<div th:include="common/header-search :: header-search"></div>
 <div id="loginModal" class="modal fade">
 
     <div class="modal-dialog">
@@ -25,7 +24,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-xs-8 col-xs-offset-2">
-                        <input type="text" name="username" id="username"
+                        <input type="text" name="username" id="phone"
                                placeholder="填写手机号^o^" class="form-control" />
                     </div>
                 </div>
@@ -43,6 +42,7 @@
             </div>
 
             <div class="modal-footer">
+                <span id="loginMessage" class="glyphicon"></span>
                 <button type="button" id="loginButton" class="btn btn-success">
                     登陆
                 </button>
@@ -52,53 +52,6 @@
     </div>
 
 </div>
-<div class="jumbotron">
-    <div id="main">
-        <div class="row">
-            <div class="col-md-7 col-md-offset-2">
-                <div class="detail">
-                    <div class="title">
-                        <div class="publish-time" th:text="'发布于：' + ${result.data.createTime}"></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="picture">
-                                <img th:src="@{${result.data.img}}" alt="${@{result.data.name}}" class="img-rounded"/>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="goods-info">
-                                <h4 th:text="${result.data.name}"></h4>
-                                <div class="info-line">
-                                    <span class="param-name">价格</span>
-                                    <span class="goods-price" th:text="'￥' + ${result.data.price}"></span>
-                                </div>
-                                <div class="info-line">
-                                    <span class="param-name">交易方式</span>
-                                    <span class="param-value">线下交易</span>
-                                </div>
-                                <div class="info-line buttons">
-                                    <button class="btn btn-success" id="buyButton"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;购买</button>
-                                    <button class="btn btn-default" style="margin-left: 20px;" id="likeButton"><span class="glyphicon glyphicon-heart"></span>&nbsp;收藏</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="goods-description">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">二货描述</h3>
-                            </div>
-                            <div class="panel-body" th:text="${result.data.description}">
-                                Panel content
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>-->
 <div class="jumbotron">
     <div class="row" id="title">
         <div class="col-md-10 col-md-offset-1">
@@ -128,7 +81,7 @@
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">价格</label>
-                            <div class="input-group col-md-5" style="padding: 0px 15px;">
+                            <div class="input-group col-md-5" style="padding: 0 15px;">
                                 <div class="input-group-addon">￥</div>
                                 <input type="text" class="form-control" id="price"/>
                             </div>
@@ -161,4 +114,5 @@
 <script type="text/javascript" th:src="@{/js/jquery-confirm.min.js}"></script>
 <script type="text/javascript" th:src="@{/js/js.cookie.min.js}"></script>
 <script type="text/javascript" th:src="@{/js/publish.js}"></script>
+<script type="text/javascript" th:src="@{/js/common/nav-bar.js}"></script>
 </html>

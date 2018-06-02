@@ -24,24 +24,25 @@ $(function() {
             contentType: "application/json",
             dataType: "JSON",
             data: JSON.stringify(user),
-            success: function() {
-                $.alert({
-                    type:'green',
-                    title: '系统提示',
-                    content: '注册成功！',
-                    icon:'glyphicon glyphicon-ok-sign',
-                    buttons: {
-                        OK: {
-                            text: "确认",
-                            action: function() {
-                                location.href='/xiancai/home';
+            success: function(result) {
+                if (result.code === 1) {
+                    $.alert({
+                        type:'green',
+                        title: '系统提示',
+                        content: '注册成功！',
+                        icon:'glyphicon glyphicon-ok-sign',
+                        buttons: {
+                            OK: {
+                                text: "确认",
+                                action: function() {
+                                    location.href='/xiancai/home';
+                                }
                             }
                         }
-                    }
-                });
-            },
-            error: function() {
-                flash("#taskId", 8, 10, 100);
+                    });
+                } else {
+                    flash("#phone", 8, 10, 100);
+                }
             }
         });
     });

@@ -10,6 +10,8 @@ public interface UserMapper {
 
     User getUserByPhone(String phone);
 
+    User getUserById(Long userId);
+
     int saveUser(User user);
 
     int updateUserByUserId(User user);
