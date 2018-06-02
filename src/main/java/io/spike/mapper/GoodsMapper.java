@@ -23,5 +23,5 @@ public interface GoodsMapper {
 
     List<Goods> listGoodsByName(@Param("name") String name);
 
-    int updateStatusById(Long goodsId, Integer status);
+    int updateStatusById(@Param("goodsId") Long goodsId, @Param("status") Integer status);
 }

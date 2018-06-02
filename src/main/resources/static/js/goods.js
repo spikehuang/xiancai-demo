@@ -46,7 +46,7 @@ $(function() {
         $.get(
             "/xiancai/user/" + inputPhone + "/" + inputPassword,
             function(result) {
-                if (result.code == 2) {
+                if (result.code === 2) {
                     $('#loginMessage').hide().html('<label class="label label-danger">' + result.data + '</label>').show(300);
                 } else {
                     Cookies.set('username', result.data.username, {expires: 7, path: '/xiancai'});
@@ -61,7 +61,7 @@ $(function() {
         var userId = Cookies.get('userId');
         var goodsId = $('#goodsId').val();
         var price = $('#price').val();
-        var buy = {
+        var buyInfo = {
             "userId": userId,
             "goodsId": goodsId,
             "price": price
@@ -82,7 +82,7 @@ $(function() {
                             type: "POST",
                             contentType: "application/json",
                             dataType: "JSON",
-                            data: JSON.stringify(buy)
+                            data: JSON.stringify(buyInfo)
                         });
                         $.alert({
                             type: "green",
