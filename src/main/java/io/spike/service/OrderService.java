@@ -10,5 +10,9 @@ public interface OrderService {
 
     List<Order> listOrdersByUserId(Long userId);
 
+    Order getOrderById(Long orderId);
+
+    Long getOrderIdByUserIdAndGoodsId(Long userId, Long goodsId);
+
     int buyGoods(Long userId, Long goodsId, BigDecimal price);
 }

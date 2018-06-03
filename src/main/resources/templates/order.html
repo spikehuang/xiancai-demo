@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <title>商品发布页 - DJTU</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap-theme.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/jquery-confirm.min.css}"/>
+    <!--<link rel="stylesheet" th:href="@{/css/order.css}"/>-->
+</head>
+<body>
+<div th:include="common/header-nav :: header-nav"></div>
+<div class="jumbotron">
+    <div class="row" id="title">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    订单详情
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="panel panel-default">
+                <div class="main" style="padding: 15px;">
+                    <p th:text="'订单编号：' + ${result.data.orderId}"></p>
+                    <p th:text="'订单状态：' + ${result.data.status}"></p>
+                    <p th:text="'价格：' + ${result.data.money}"></p>
+                    <p th:text="'创建时间：' + ${result.data.createTime}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:include="common/footer :: footer"></div>
+</body>
+<script type="text/javascript" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery-confirm.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/js.cookie.min.js}"></script>
+<!--<script type="text/javascript" th:src="@{/js/order.js}"></script>-->
+<script type="text/javascript" th:src="@{/js/common/nav-bar.js}"></script>
+</html>

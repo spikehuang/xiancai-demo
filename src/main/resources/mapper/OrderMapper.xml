@@ -12,11 +12,29 @@
     </resultMap>
 
     <select id="listOrdersByUserId" resultMap="BaseResultMap" parameterType="java.lang.Long">
-        SELECT order_id, user_id, goods_id, status, money,
+        SELECT order_id, user_id, goods_id,
+        CASE status WHEN 0 THEN '交易中' WHEN 1 THEN '交易成功' WHEN 2 THEN '交易取消' END status,
+        money,
         DATE_FORMAT(FROM_UNIXTIME(create_time), '%Y-%m-%d') create_time_normal,
         DATE_FORMAT(FROM_UNIXTIME(update_time), '%Y-%m-%d') update_time_normal
         FROM t_order
         WHERE user_id = #{userId, jdbcType = BIGINT}
+    </select>
+
+    <select id="getOrderById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        SELECT order_id, user_id, goods_id,
+        CASE status WHEN 0 THEN '交易中' WHEN 1 THEN '交易成功' WHEN 2 THEN '交易取消' END status,
+        money,
+        DATE_FORMAT(FROM_UNIXTIME(create_time), '%Y-%m-%d') create_time_normal,
+        DATE_FORMAT(FROM_UNIXTIME(update_time), '%Y-%m-%d') update_time_normal
+        FROM t_order
+        WHERE order_id = #{orderId, jdbcType = BIGINT}
+    </select>
+
+    <select id="getOrderIdByUserIdAndGoodsId" resultType="java.lang.Long">
+        SELECT order_id
+        FROM t_order
+        WHERE user_id = #{userId, jdbcType = BIGINT} AND goods_id = #{goodsId, jdbcType = BIGINT}
     </select>
 
     <insert id="saveOrder">

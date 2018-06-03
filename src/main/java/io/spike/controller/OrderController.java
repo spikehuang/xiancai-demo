@@ -22,6 +22,12 @@ public class OrderController {
         return new Result<>(StateEnum.SUCCESS, orders);
     }
 
+    @GetMapping("/orders/{userId}/{goodsId}")
+    public Result getOrderIdByUserIdAndGoodsId(@PathVariable("userId") Long userId, @PathVariable("goodsId") Long goodsId) {
+        Long orderId = orderService.getOrderIdByUserIdAndGoodsId(userId, goodsId);
+        return new Result<>(StateEnum.SUCCESS, orderId);
+    }
+
     @PostMapping(value = "/orders", consumes = "application/json;charset=utf-8")
     public Result buyGoods(@RequestBody BuyInfo buyInfo) {
         int count = orderService.buyGoods(buyInfo.getUserId(), buyInfo.getGoodsId(), buyInfo.getPrice());

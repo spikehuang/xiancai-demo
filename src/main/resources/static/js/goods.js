@@ -1,6 +1,6 @@
-$(function() {
+$(function () {
 
-    $(document).ready(function() {
+    $(document).ready(function () {
 //         Cookies.set('username', 'tom', {expires: 7, path: '/xiancai'});
 //         Cookies.set('userId', 7001, {expires: 7, path: '/xiancai'});
         init();
@@ -17,14 +17,14 @@ $(function() {
             });
         }
     }
-    
+
     $('#loginButton').click(function () {
         var inputPhone = $('#phone').val();
         var inputPassword = $('#password').val();
 //        console.log("input: " + inputPhone + inputPassword);
         $.get(
             "/xiancai/user/" + inputPhone + "/" + inputPassword,
-            function(result) {
+            function (result) {
                 if (result.code === 2) {
                     $('#loginMessage').hide().html('<label class="label label-danger">' + result.data + '</label>').show(300);
                 } else {
@@ -36,7 +36,7 @@ $(function() {
         );
     });
 
-    $('#buyButton').click(function() {
+    $('#buyButton').click(function () {
         var userId = Cookies.get('userId');
         var goodsId = $('#goodsId').val();
         var price = $('#price').val();
@@ -44,18 +44,18 @@ $(function() {
             "userId": userId,
             "goodsId": goodsId,
             "price": price
-        }
+        };
 
         $.confirm({
             type: "blue",
             title: "系统提示",
             content: "确定购买[ " + $('#name').val() + " ]吗？",
-            icon:'glyphicon glyphicon-question-sign',
+            icon: 'glyphicon glyphicon-question-sign',
             buttons: {
                 confirm: {
-                	text: "确认",
-                	btnClass: "btn-blue",
-                	action: function() {
+                    text: "确认",
+                    btnClass: "btn-blue",
+                    action: function () {
                         $.ajax({
                             url: "/xiancai/orders",
                             type: "POST",
@@ -63,16 +63,27 @@ $(function() {
                             dataType: "JSON",
                             data: JSON.stringify(buyInfo)
                         });
+                        var orderId = '';
+                        $.get(
+                            "/xiancai/orders/" + userId + "/" + goodsId,
+                            function (result) {
+                                if (result.code === 1) {
+                                    orderId = result.data;
+                                } else {
+                                    console.log(result.msg);
+                                }
+                            }
+                        );
                         $.alert({
                             type: "green",
                             title: "系统提示",
                             content: "购买成功！",
-                            icon:'glyphicon glyphicon-ok-sign',
+                            icon: 'glyphicon glyphicon-ok-sign',
                             buttons: {
                                 OK: {
                                     text: "确认",
-                                    action : function() {
-                                        location.href='/xiancai/home';
+                                    action: function () {
+                                        location.href = '/xiancai/orders/' + orderId + '/detail';
                                     }
                                 }
                             }

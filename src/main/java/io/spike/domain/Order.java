@@ -10,7 +10,7 @@ public class Order {
 
     private Long goodsId;
 
-    private Integer status;
+    private String status;
 
     private BigDecimal money;
 
@@ -42,11 +42,11 @@ public class Order {
         this.goodsId = goodsId;
     }
 
-    public Integer getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

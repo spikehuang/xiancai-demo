@@ -12,5 +12,9 @@ public interface OrderMapper {
 
     List<Order> listOrdersByUserId(Long userId);
 
+    Order getOrderById(Long orderId);
+
+    Long getOrderIdByUserIdAndGoodsId(@Param("userId") Long userId, @Param("goodsId") Long goodsId);
+
     int saveOrder(@Param("userId") Long userId, @Param("goodsId") Long goodsId, @Param("money") BigDecimal money);
 }

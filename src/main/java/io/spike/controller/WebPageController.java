@@ -1,12 +1,11 @@
 package io.spike.controller;
 
-import io.spike.domain.Goods;
-import io.spike.domain.GoodsCat;
-import io.spike.domain.Result;
-import io.spike.domain.User;
+import io.spike.domain.*;
 import io.spike.enums.StateEnum;
+import io.spike.mapper.OrderMapper;
 import io.spike.service.GoodsCatService;
 import io.spike.service.GoodsService;
+import io.spike.service.OrderService;
 import io.spike.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +28,9 @@ public class WebPageController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private OrderService orderService;
 
     @RequestMapping(value = {"/", "/home"}, method = RequestMethod.GET)
     public String index(Model model) {
@@ -70,6 +72,14 @@ public class WebPageController {
         Result result = new Result<>(StateEnum.SUCCESS, user);
         model.addAttribute("result", result);
         return "/person";
+    }
+
+    @GetMapping("/orders/{orderId}/detail")
+    public String showOrderDetail(@PathVariable("orderId") Long orderId, Model model) {
+        Order order = orderService.getOrderById(orderId);
+        Result result = new Result<>(StateEnum.SUCCESS, order);
+        model.addAttribute("result", result);
+        return "/order";
     }
 
 }

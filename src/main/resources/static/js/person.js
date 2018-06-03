@@ -6,106 +6,40 @@ $(function() {
         $("#" + liId).addClass("active");
 
         var catId = liId.split("-")[0];
-        $('div[style = "display: block;"]').css('display', 'none');
-        $('#' + catId).css('display', 'block');
+        $('div[style = "display: block;"]').hide().css('display', 'none');
+        $('#' + catId).fadeIn().css('display', 'block');
     });
 
-    /*$("#distributeButton").click(function() {
-        location.href = '/xiancai/publish';
-    });
+    $('#publish-item').click(function() {
+        var goodsTable = $('#goodsTable');
+        var tableCode = '';
+        goodsTable.html('');
 
-    $("#searchButton").click(function() {
-        var keyWord = $("#keyWordInput").val();
-        $.ajax({
-            url: "/xiancai/goods/" + keyWord,
-            async: true,
-            success: function(result) {
-                if (result.code == 1) {
-                    $("#goodsContainer").hide().html("");
-                    var goodsContainerHtml = "";
-                    if (result.data.length == 0) {
-                        goodsContainerHtml +=
-                            "<div style='display: flex;align-items:center;justify-content:center;'>" +
-                                "<img src='/xiancai/img/error.png' alt='未查找到商品'/>" +
-                                "<p style='margin: 15px 0px 0px 0px'>未查找到商品</p>" +
-                            "</div>"
-                    } else {
-                        var goodsList = result.data;
-                        goodsContainerHtml = "<div class='row'>";
-                        for (var i = 0; i < goodsList.length; i++) {
-                            goodsContainerHtml +=
-                                "<div class='col-sm-6 col-md-4'>" +
-                                    "<div class='thumbnail'>" +
-                                        "<a href='/xiancai/goods/" + goodsList[i].goodsId + "/detail' target='_blank'>" +
-                                            "<img src='/xiancai" + goodsList[i].img + "' alt='" + goodsList[i].name + "'/>" +
-                                        "</a>" +
-                                        "<div class='caption'>" +
-                                            "<p>" + goodsList[i].name + "</p>" +
-                                            "<p style='color: #FF0000;'>￥" + goodsList[i].price + "</p>" +
-                                        "</div>" +
-                                    "</div>" +
-                                "</div>"
-                        }
-                        goodsContainerHtml += "</div>";
+        $.get(
+            '/xiancai/user/' + Cookies.get('userId') + '/goods',
+            function(result) {
+                if (result.code === 1) {
+                    var length = result.data.length;
+                    console.log(length);
+                    for (var i = 0; i < length; i++) {
+                        tableCode += '<tr><td class = "userId">' + result.data[i].goodsId + '</td>';
+                        tableCode += '<td>' + result.data[i].name + '</td>';
+                        tableCode += '<td>' + result.data[i].price + '</td>';
+                        tableCode += '<td>' + result.data[i].createTime + '</td>';
+                        tableCode +=
+                            '<td>' +
+                                '<button type="button" class="btn btn-primary btn-xs updateButton">' +
+                                    '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>' +
+                                '</button>&nbsp;&nbsp;' +
+                                '<button type="button" class="btn btn-danger btn-xs removeButton">' +
+                                    '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>' +
+                                '</button>' +
+                            '</td></tr>';
                     }
-                    $("#goodsContainer").html(goodsContainerHtml).show(500);
+                    goodsTable.html(tableCode);
                 }
-
             }
-        });
+        );
     });
-
-    $("body").keydown(function() {
-        if (event.keyCode == "13") {
-            $('#searchButton').click();
-        }
-    });
-
-    $(".catsList").click(function() {
-        var liId = $(this).attr("id");
-//        console.log($(this).attr("id"));
-        $(".active").removeClass("active");
-        $("#" + liId).addClass("active");
-
-        var catId = liId.split("-")[1];
-
-        $.ajax({
-            url: "/xiancai/goods/cat/" + catId,
-            async: true,
-            success: function(result) {
-                if (result.code == 1) {
-                    $("#goodsContainer").hide().html("");
-                    var goodsContainerHtml = "";
-                    if (result.data.length == 0) {
-                        goodsContainerHtml +=
-                            "<div style='display: flex;align-items:center;justify-content:center;'>" +
-                                "<img src='/xiancai/img/error.png' alt='未查找到商品'/>" +
-                                "<p style='margin: 15px 0px 0px 0px'>未查找到商品</p>" +
-                            "</div>"
-                    } else {
-                        var goodsList = result.data;
-                        goodsContainerHtml = "<div class='row'>";
-                        for (var i = 0; i < goodsList.length; i++) {
-                            goodsContainerHtml +=
-                                "<div class='col-sm-6 col-md-4'>" +
-                                    "<div class='thumbnail'>" +
-                                        "<a href='/xiancai/goods/" + goodsList[i].goodsId + "/detail' target='_blank'>" +
-                                            "<img src='/xiancai" + goodsList[i].img + "' alt='" + goodsList[i].name + "'/>" +
-                                        "</a>" +
-                                        "<div class='caption'>" +
-                                            "<p>" + goodsList[i].name + "</p>" +
-                                            "<p style='color: #FF0000;'>￥" + goodsList[i].price + "</p>" +
-                                        "</div>" +
-                                    "</div>" +
-                                "</div>"
-                        }
-                        goodsContainerHtml += "</div>";
-                    }
-                    $("#goodsContainer").html(goodsContainerHtml).show(500);
-                }
-
-            }
-        });
-    });*/
 
 });

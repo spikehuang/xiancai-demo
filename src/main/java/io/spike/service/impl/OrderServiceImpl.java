@@ -25,6 +25,16 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public Long getOrderIdByUserIdAndGoodsId(Long userId, Long goodsId) {
+        return orderMapper.getOrderIdByUserIdAndGoodsId(userId, goodsId);
+    }
+
+    @Override
+    public Order getOrderById(Long orderId) {
+        return orderMapper.getOrderById(orderId);
+    }
+
+    @Override
     public int buyGoods(Long userId, Long goodsId, BigDecimal price) {
         int count = orderMapper.saveOrder(userId, goodsId, price);
         count += goodsMapper.updateStatusById(goodsId, 1);

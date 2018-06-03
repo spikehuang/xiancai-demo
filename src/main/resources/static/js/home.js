@@ -47,7 +47,7 @@ $(function() {
     });
 
     $("body").keydown(function() {
-        if (event.keyCode === "13") {
+        if (event.keyCode == "13") {
             $('#searchButton').click();
         }
     });
