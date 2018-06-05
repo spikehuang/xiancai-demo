@@ -38,4 +38,24 @@ public class OrderController {
         }
     }
 
+    @PostMapping(value = "/orders/successful", consumes = "application/json;charset=utf-8")
+    public Result successTrade(@RequestBody String orderId) {
+        int count = orderService.successTrade(Long.parseLong(orderId.trim()));
+        if (count == 2) {
+            return new Result<>(StateEnum.SUCCESS, "count: " + count);
+        } else {
+            return new Result<>(StateEnum.FAIL, "更新交易状态失败，count: " + count);
+        }
+    }
+
+    @PostMapping(value = "/orders/cancel", consumes = "application/json;charset=utf-8")
+    public Result cancelTrade(@RequestBody String orderId) {
+        int count = orderService.cancelTrade(Long.parseLong(orderId.trim()));
+        if (count == 2) {
+            return new Result<>(StateEnum.SUCCESS, "count: " + count);
+        } else {
+            return new Result<>(StateEnum.FAIL, "更新交易状态失败，count: " + count);
+        }
+    }
+
 }

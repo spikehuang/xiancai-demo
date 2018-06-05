@@ -59,32 +59,35 @@ $(function () {
                         $.ajax({
                             url: "/xiancai/orders",
                             type: "POST",
+                            async: "false",
                             contentType: "application/json",
                             dataType: "JSON",
                             data: JSON.stringify(buyInfo)
                         });
                         var orderId = '';
-                        $.get(
-                            "/xiancai/orders/" + userId + "/" + goodsId,
-                            function (result) {
+                        $.ajax({
+                            url: "/xiancai/orders/" + userId + "/" + goodsId,
+                            type: "GET",
+                            async: "false",
+                            success: function(result) {
                                 if (result.code === 1) {
                                     orderId = result.data;
+                                    $.alert({
+                                        type: "green",
+                                        title: "系统提示",
+                                        content: "购买成功！",
+                                        icon: 'glyphicon glyphicon-ok-sign',
+                                        buttons: {
+                                            OK: {
+                                                text: "确认",
+                                                action: function () {
+                                                    location.href = '/xiancai/orders/' + orderId + '/detail';
+                                                }
+                                            }
+                                        }
+                                    });
                                 } else {
                                     console.log(result.msg);
-                                }
-                            }
-                        );
-                        $.alert({
-                            type: "green",
-                            title: "系统提示",
-                            content: "购买成功！",
-                            icon: 'glyphicon glyphicon-ok-sign',
-                            buttons: {
-                                OK: {
-                                    text: "确认",
-                                    action: function () {
-                                        location.href = '/xiancai/orders/' + orderId + '/detail';
-                                    }
                                 }
                             }
                         });

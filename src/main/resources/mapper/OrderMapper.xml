@@ -11,6 +11,16 @@
         <result column="update_time_normal" property="updateTime" jdbcType="VARCHAR" />
     </resultMap>
 
+    <resultMap id="orderDetailMap" type="io.spike.dto.OrderDetail">
+        <result column="order_id" property="orderId" jdbcType="BIGINT" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="money" property="money" jdbcType="DECIMAL" />
+        <result column="status" property="status" jdbcType="TINYINT" />
+        <result column="username" property="username" jdbcType="VARCHAR" />
+        <result column="phone" property="phone" jdbcType="VARCHAR" />
+        <result column="create_time_normal" property="createTime" jdbcType="VARCHAR" />
+    </resultMap>
+
     <select id="listOrdersByUserId" resultMap="BaseResultMap" parameterType="java.lang.Long">
         SELECT order_id, user_id, goods_id,
         CASE status WHEN 0 THEN '交易中' WHEN 1 THEN '交易成功' WHEN 2 THEN '交易取消' END status,
@@ -48,27 +58,31 @@
         UNIX_TIMESTAMP(NOW()))
     </insert>
 
-    <!--
-           <select id="listGoodsByUserId" resultMap="BaseResultMap" parameterType="java.lang.Long">
-               SELECT goods_id, user_id, name, img, price, cat_id, status, description,
-               DATE_FORMAT(FROM_UNIXTIME(create_time), '%Y-%m-%d') create_time_normal,
-               DATE_FORMAT(FROM_UNIXTIME(update_time), '%Y-%m-%d') update_time_normal
-               FROM t_goods
-               WHERE user_id = #{userId, jdbcType = BIGINT}
-           </select>
+    <select id="getOrderDetailById" resultMap="orderDetailMap" parameterType="java.lang.Long">
+        select
+        o.order_id,
+        g.name,
+        o.money,
+        case o.status when 0 then '交易中' when 1 then '交易成功' when 2 then '交易取消' end status,
+        u.username,
+        u.phone,
+        from_unixtime(o.create_time, '%Y-%m-%d %H:%i:%s') create_time_normal
+        from t_order o inner join t_goods g on o.goods_id = g.goods_id
+        inner join t_user u on g.user_id = u.user_id
+        where order_id = #{orderId, jdbcType = BIGINT}
+    </select>
 
-           <delete id="removeGoodsById" parameterType="java.lang.Long" >
-               DELETE FROM t_goods
-               where goods_id = #{goodsId, jdbcType=BIGINT}
-           </delete>
+    <update id="updateStatusById">
+        UPDATE t_order SET
+        status = #{status, jdbcType=TINYINT},
+        update_time = UNIX_TIMESTAMP(NOW())
+        WHERE order_id = #{orderId, jdbcType=BIGINT}
+    </update>
 
-           <select id="getGoodsById" resultMap="BaseResultMap" parameterType="java.lang.Long">
-               SELECT goods_id, user_id, name, img, price, cat_id, status, description,
-               DATE_FORMAT(FROM_UNIXTIME(create_time), '%Y-%m-%d') create_time_normal,
-               DATE_FORMAT(FROM_UNIXTIME(update_time), '%Y-%m-%d') update_time_normal
-               FROM t_goods
-               WHERE goods_id = #{goodsId, jdbcType = BIGINT}
-           </select>
-       -->
+    <select id="getGoodsIdByOrderId" resultType="java.lang.Long" parameterType="java.lang.Long">
+        SELECT goods_id
+        FROM t_order
+        WHERE order_id = #{orderId, jdbcType=BIGINT}
+    </select>
 
 </mapper>

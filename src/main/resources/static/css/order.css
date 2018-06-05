@@ -1,0 +1,14 @@
+#title .panel {
+    display:flex;/*Flex布局*/
+    display: -webkit-flex; /* Safari */
+    align-items:center;/*指定垂直居中*/
+    justify-content:center;
+}
+
+#title .panel-body {
+    font-size: 20px;
+}
+
+.jumbotron p {
+    font-size: 16px;
+}

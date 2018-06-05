@@ -2,11 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <title>商品发布页 - DJTU</title>
+    <title>订单详情页 - DJTU</title>
     <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}"/>
     <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap-theme.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/jquery-confirm.min.css}"/>
-    <!--<link rel="stylesheet" th:href="@{/css/order.css}"/>-->
+    <link rel="stylesheet" th:href="@{/css/order.css}"/>
 </head>
 <body>
 <div th:include="common/header-nav :: header-nav"></div>
@@ -23,11 +23,29 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="main" style="padding: 15px;">
-                    <p th:text="'订单编号：' + ${result.data.orderId}"></p>
-                    <p th:text="'订单状态：' + ${result.data.status}"></p>
-                    <p th:text="'价格：' + ${result.data.money}"></p>
-                    <p th:text="'创建时间：' + ${result.data.createTime}"></p>
+                <div class="row">
+                    <div class="col-md-offset-1">
+                        <div class="main" style="padding: 15px;">
+                            <p th:text="'订单编号：' + ${result.data.orderId}" id="orderId"></p>
+                            <p th:text="'订单状态：' + ${result.data.status}" id="status"></p>
+                            <p th:text="'商品名称：' + ${result.data.name}"></p>
+                            <p th:text="'价格：' + ${result.data.money} + ' 元'"></p>
+                            <p th:text="'卖家昵称：' + ${result.data.username}"></p>
+                            <p th:text="'卖家联系方式：' + ${result.data.phone}" style="font-weight: bold;"></p>
+                            <p th:text="'下单时间：' + ${result.data.createTime}"></p>
+                            <div id="updateStatus">
+                                <div class="selectButton">
+                                    <button type="button" class="btn btn-success" id="successButton">
+                                        交易成功
+                                    </button>&nbsp;&nbsp;
+                                    <button type="button" class="btn btn-danger" id="cancelButton">
+                                        取消交易
+                                    </button>
+                                </div>
+                                <span style="font-style: italic;">(请您在交易完成后及时修改交易状态)</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -39,6 +57,6 @@
 <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
 <script type="text/javascript" th:src="@{/js/jquery-confirm.min.js}"></script>
 <script type="text/javascript" th:src="@{/js/js.cookie.min.js}"></script>
-<!--<script type="text/javascript" th:src="@{/js/order.js}"></script>-->
+<script type="text/javascript" th:src="@{/js/order.js}"></script>
 <script type="text/javascript" th:src="@{/js/common/nav-bar.js}"></script>
 </html>

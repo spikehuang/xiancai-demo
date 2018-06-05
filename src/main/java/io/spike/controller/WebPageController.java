@@ -1,6 +1,7 @@
 package io.spike.controller;
 
 import io.spike.domain.*;
+import io.spike.dto.OrderDetail;
 import io.spike.enums.StateEnum;
 import io.spike.mapper.OrderMapper;
 import io.spike.service.GoodsCatService;
@@ -76,10 +77,15 @@ public class WebPageController {
 
     @GetMapping("/orders/{orderId}/detail")
     public String showOrderDetail(@PathVariable("orderId") Long orderId, Model model) {
-        Order order = orderService.getOrderById(orderId);
-        Result result = new Result<>(StateEnum.SUCCESS, order);
+        OrderDetail orderDetail = orderService.getOrderDetailById(orderId);
+        Result result = new Result<>(StateEnum.SUCCESS, orderDetail);
         model.addAttribute("result", result);
         return "/order";
+    }
+
+    @GetMapping("/administrator/user")
+    public String manageUser() {
+        return "/administrator/user";
     }
 
 }
