@@ -20,9 +20,9 @@ $(function() {
             function(result) {
                 if (result.code === 1) {
                     var length = result.data.length;
-                    console.log(length);
+                    // console.log(length);
                     for (var i = 0; i < length; i++) {
-                        tableCode += '<tr><td class = "userId">' + result.data[i].goodsId + '</td>';
+                        tableCode += '<tr><td class = "goodsId">' + result.data[i].goodsId + '</td>';
                         tableCode += '<td>' + result.data[i].name + '</td>';
                         tableCode += '<td>' + result.data[i].price + '</td>';
                         tableCode += '<td>' + result.data[i].createTime + '</td>';
@@ -40,6 +40,20 @@ $(function() {
                 }
             }
         );
+    });
+
+    $('#goodsTable').on('click', '.removeButton', function () {
+        var goodsId = $(this).parent().siblings(".goodsId").html();
+        // alert(goodsId);
+        $.ajax({
+            url: '/xiancai/goods/' + goodsId,
+            type: 'DELETE',
+            success: function (result) {
+                if (result.code === 1) {
+                    $('#publish-item').click();
+                }
+            }
+        });
     });
 
 });
