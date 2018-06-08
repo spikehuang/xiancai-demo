@@ -10,4 +10,6 @@ public interface UserService {
 
     int saveUser(User user);
 
+    int updateUserByUserId(User user);
+
 }

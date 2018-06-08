@@ -21,8 +21,8 @@ public class OrderServiceImpl implements OrderService {
     private GoodsMapper goodsMapper;
 
     @Override
-    public List<Order> listOrdersByUserId(Long userId) {
-        return orderMapper.listOrdersByUserId(userId);
+    public List<OrderDetail> listOrdersWithGoodsNameByUserId(Long userId) {
+        return orderMapper.listOrdersWithGoodsNameByUserId(userId);
     }
 
     @Override

@@ -40,7 +40,7 @@ public class UserController {
     public Result saveUser(@RequestBody User user) {
         Result<String> result;
         try {
-            userService.saveUser(user);
+            int count = userService.saveUser(user);
             result = new Result<>(StateEnum.SUCCESS, "注册成功");
         } catch (Exception e) {
             e.printStackTrace();
@@ -54,4 +54,18 @@ public class UserController {
         User currentUser = userService.getUserByPhone(phone);
         return currentUser != null;
     }
+
+    @PutMapping(value = "/user", consumes = "application/json;charset=utf-8")
+    public Result updateUser(@RequestBody User user) {
+        Result<String> result;
+        try {
+            int count = userService.updateUserByUserId(user);
+            result = new Result<>(StateEnum.SUCCESS, "更新成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            result = new Result<>(StateEnum.FAIL, "更新失败");
+        }
+        return result;
+    }
+
 }

@@ -2,15 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="io.spike.mapper.UserMapper">
     <resultMap id="BaseResultMap" type="io.spike.domain.User">
-        <result column="user_id" property="userId" jdbcType="BIGINT" />
-        <result column="username" property="username" jdbcType="VARCHAR" />
-        <result column="password" property="password" jdbcType="VARCHAR" />
-        <result column="real_name" property="realName" jdbcType="VARCHAR" />
-        <result column="phone" property="phone" jdbcType="VARCHAR" />
-        <result column="address" property="address" jdbcType="VARCHAR" />
-        <result column="user_type" property="userType" jdbcType="VARCHAR" />
-        <result column="create_time_normal" property="createTime" jdbcType="VARCHAR" />
-        <result column="update_time_normal" property="updateTime" jdbcType="VARCHAR" />
+        <result column="user_id" property="userId" jdbcType="BIGINT"/>
+        <result column="username" property="username" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="real_name" property="realName" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="user_type" property="userType" jdbcType="TINYINT"/>
+        <result column="create_time_normal" property="createTime" jdbcType="VARCHAR"/>
+        <result column="update_time_normal" property="updateTime" jdbcType="VARCHAR"/>
     </resultMap>
 
     <select id="getUserByPhone" resultMap="BaseResultMap" parameterType="java.lang.String">
@@ -42,18 +42,21 @@
         UNIX_TIMESTAMP(NOW()))
     </insert>
 
-    <update id="updateUserByUserId" parameterType="io.spike.domain.User" >
+    <update id="updateUserByUserId" parameterType="io.spike.domain.User">
         UPDATE t_user SET
         username = #{username, jdbcType=VARCHAR},
         password = #{password, jdbcType=VARCHAR},
         real_name = #{realName, jdbcType=VARCHAR},
         phone = #{phone, jdbcType=VARCHAR},
         address = #{address, jdbcType=VARCHAR},
+        <if test="null != userType and '' != userType">
+            user_type = #{userType, jdbcType = TINYINT},
+        </if>
         update_time = UNIX_TIMESTAMP(NOW())
-        WHERE user_id = #{userId, jdbcType=INTEGER}
+        WHERE user_id = #{userId, jdbcType = INTEGER}
     </update>
 
-    <delete id="removeUserByUserId" parameterType="java.lang.Long" >
+    <delete id="removeUserByUserId" parameterType="java.lang.Long">
         DELETE FROM t_user
         where user_id = #{userId, jdbcType=BIGINT}
     </delete>

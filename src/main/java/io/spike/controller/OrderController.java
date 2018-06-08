@@ -3,6 +3,7 @@ package io.spike.controller;
 import io.spike.domain.Order;
 import io.spike.domain.Result;
 import io.spike.dto.BuyInfo;
+import io.spike.dto.OrderDetail;
 import io.spike.enums.StateEnum;
 import io.spike.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +17,11 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-    @GetMapping("/orders/user/{userId}")
-    public Result listOrdersByUserId(@PathVariable("userId") Long userId) {
-        List<Order> orders = orderService.listOrdersByUserId(userId);
-        return new Result<>(StateEnum.SUCCESS, orders);
-    }
+//    @GetMapping("/orders/user/{userId}")
+//    public Result listOrdersByUserId(@PathVariable("userId") Long userId) {
+//        List<OrderDetail> orders = orderService.listOrdersWithGoodsNameByUserId(userId);
+//        return new Result<>(StateEnum.SUCCESS, orders);
+//    }
 
     @GetMapping("/orders/{userId}/{goodsId}")
     public Result getOrderIdByUserIdAndGoodsId(@PathVariable("userId") Long userId, @PathVariable("goodsId") Long goodsId) {

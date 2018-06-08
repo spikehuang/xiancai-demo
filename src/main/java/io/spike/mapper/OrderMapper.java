@@ -24,4 +24,6 @@ public interface OrderMapper {
     int updateStatusById(@Param("orderId") Long orderId, @Param("status") Integer status);
 
     Long getGoodsIdByOrderId(Long orderId);
+
+    List<OrderDetail> listOrdersWithGoodsNameByUserId(Long userId);
 }

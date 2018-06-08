@@ -85,4 +85,18 @@
         WHERE order_id = #{orderId, jdbcType=BIGINT}
     </select>
 
+    <select id="listOrdersWithGoodsNameByUserId" resultMap="orderDetailMap" parameterType="java.lang.Long">
+        select
+        o.order_id,
+        g.name,
+        o.money,
+        case o.status when 0 then '交易中' when 1 then '交易成功' when 2 then '交易取消' end status,
+        u.username,
+        u.phone,
+        from_unixtime(o.create_time, '%Y-%m-%d %H:%i:%s') create_time_normal
+        from t_order o inner join t_goods g on o.goods_id = g.goods_id
+        inner join t_user u on g.user_id = u.user_id
+        where o.user_id = #{userId, jdbcType = BIGINT}
+    </select>
+
 </mapper>

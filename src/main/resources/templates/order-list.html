@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <title>订单详情页 - DJTU</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap-theme.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/jquery-confirm.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/order.css}"/>
+</head>
+<body>
+<div th:include="common/header-nav :: header-nav"></div>
+<div class="jumbotron">
+    <div class="row" id="title">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    订单列表
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="panel panel-default">
+                <div class="row">
+                    <div class="col-md-offset-1 col-md-10">
+                        <div class="main" style="padding: 15px;">
+                            <table class="table table-hover table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th>订单ID</th>
+                                    <th>商品</th>
+                                    <th>订单金额</th>
+                                    <th>状态</th>
+                                    <th>下单时间</th>
+                                </tr>
+                                </thead>
+                                <tbody th:each="orders : ${result.data}" id="orderTable">
+                                <tr>
+                                    <td><a th:href="@{'/orders/' + ${orders.orderId} + '/detail'}" th:text="${orders.orderId}"></a></td>
+                                    <td th:text="${orders.name}"></td>
+                                    <td th:text="${orders.money}"></td>
+                                    <td th:text="${orders.status}"></td>
+                                    <td th:text="${orders.createTime}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:include="common/footer :: footer"></div>
+</body>
+<script type="text/javascript" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery-confirm.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/js.cookie.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/order.js}"></script>
+<script type="text/javascript" th:src="@{/js/common/nav-bar.js}"></script>
+</html>

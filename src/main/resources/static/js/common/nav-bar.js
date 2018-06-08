@@ -15,7 +15,7 @@ $(function() {
                     '<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">' + currentUsername + '<span class="caret"></span></a>' +
                     '<ul class="dropdown-menu">' +
                         '<li><a href="/xiancai/user-center/' + currentUserId + '">个人中心</a></li>' +
-                        '<li><a href="#">已购商品</a></li>' +
+                        '<li><a href="/xiancai/orders/user/' + currentUserId + '">已购商品</a></li>' +
                         '<li><a href="#">收藏夹</a></li>' +
                         '<li role="separator" class="divider"></li>' +
                         '<li><a href="#" id="logOut">退出登录</a></li>' +

@@ -88,4 +88,12 @@ public class WebPageController {
         return "/administrator/user";
     }
 
+    @GetMapping("/orders/user/{userId}")
+    public String listOrders(@PathVariable("userId") Long userId, Model model) {
+        List<OrderDetail> orders = orderService.listOrdersWithGoodsNameByUserId(userId);
+        Result result = new Result<>(StateEnum.SUCCESS, orders);
+        model.addAttribute("result", result);
+        return "/order-list";
+    }
+
 }
