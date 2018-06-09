@@ -20,6 +20,11 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
+    public List<Goods> listAllGoods() {
+        return goodsMapper.listAllGoods();
+    }
+
+    @Override
     public int saveGoods(Goods goods) {
         return goodsMapper.saveGoods(goods);
     }

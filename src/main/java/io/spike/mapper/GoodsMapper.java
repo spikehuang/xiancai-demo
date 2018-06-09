@@ -11,6 +11,8 @@ public interface GoodsMapper {
 
     List<Goods> listGoods();
 
+    List<Goods> listAllGoods();
+
     int saveGoods(Goods goods);
 
     List<Goods> listGoodsByUserId(Long userId);

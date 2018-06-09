@@ -49,7 +49,7 @@
         real_name = #{realName, jdbcType=VARCHAR},
         phone = #{phone, jdbcType=VARCHAR},
         address = #{address, jdbcType=VARCHAR},
-        <if test="null != userType and '' != userType">
+        <if test="userType != null">
             user_type = #{userType, jdbcType = TINYINT},
         </if>
         update_time = UNIX_TIMESTAMP(NOW())
@@ -62,8 +62,7 @@
     </delete>
 
     <select id="listUsers" resultMap="BaseResultMap">
-        SELECT user_id, username, password, real_name, phone, address,
-        CASE user_type WHEN 0 THEN '普通会员' WHEN 1 THEN '管理员' END,
+        SELECT user_id, username, password, real_name, phone, address, user_type,
         DATE_FORMAT(FROM_UNIXTIME(create_time), '%Y-%m-%d') create_time_normal,
         DATE_FORMAT(FROM_UNIXTIME(update_time), '%Y-%m-%d') update_time_normal
         FROM t_user

@@ -23,8 +23,8 @@ INSERT INTO t_user (username, password, real_name, phone, address, user_type, cr
 VALUES
 ('spike','123456','黄皓','15600057761','四舍204',1,1523463011,1523463011),
 ('tom','123','张三','18800008888','三舍412',0,1523807451,1523807451),
-('战神','123','李四','19900013098','二舍109',0,1523810245,1523810245),
-('su_yt','123','赵五','13665829916','一舍423',0,1524070809,1524070809);
+('战神','123','李四','13500005555','二舍109',0,1523810245,1523810245),
+('su_yt','123','赵五','13600006666','一舍423',0,1524070809,1524070809);
 
 CREATE TABLE t_goods_cat(
 `cat_id` INT(11) NOT NULL AUTO_INCREMENT COMMENT '商品类型id',
@@ -49,7 +49,7 @@ CREATE TABLE t_goods(
 `img` VARCHAR(150) COMMENT '商品图片',
 `price` DECIMAL(11, 2) NOT NULL COMMENT '价格',
 `cat_id` INT(11) NOT NULL COMMENT '商品分类id',
-`status` TINYINT UNSIGNED NOT NULL DEFAULT '0' COMMENT '商品状态：0-已上架；1-交易中；2-已下架',
+`status` TINYINT UNSIGNED NOT NULL DEFAULT '0' COMMENT '商品状态：0-待交易；1-交易中；2-已下架',
 `description` TEXT NOT NULL COMMENT '商品描述',
 `create_time` INT(11) NOT NULL COMMENT '创建时间',
 `update_time` INT(11) NOT NULL COMMENT '更新时间',

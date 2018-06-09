@@ -83,9 +83,11 @@ public class WebPageController {
         return "/order";
     }
 
-    @GetMapping("/administrator/user")
-    public String manageUser() {
-        return "/administrator/user";
+    @GetMapping("/administrator")
+    public String administrator(Model model) {
+        model.addAttribute("userResult", new Result<>(StateEnum.SUCCESS, userService.listUsers()));
+        model.addAttribute("goodsResult", new Result<>(StateEnum.SUCCESS, goodsService.listAllGoods()));
+        return "/administrator";
     }
 
     @GetMapping("/orders/user/{userId}")

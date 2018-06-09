@@ -10,6 +10,43 @@ $(function() {
         $('#' + catId).fadeIn().css('display', 'block');
     });
 
+    $('#updateButton').click(function () {
+        var user = {
+            "userId": Cookies.get('userId'),
+            "phone": $('#phone').val(),
+            "username": $('#username').val(),
+            "password": $('#password').val(),
+            "realName": $('#realName').val(),
+            "address": $('#address').val()
+        };
+
+        $.ajax({
+            url: "/xiancai/user",
+            type: "PUT",
+            contentType: "application/json",
+            dataType: "JSON",
+            data: JSON.stringify(user),
+            success: function(result) {
+                if (result.code === 1) {
+                    $.alert({
+                        type:'green',
+                        title: '系统提示',
+                        content: '个人信息修改成功！',
+                        icon:'glyphicon glyphicon-ok-sign',
+                        buttons: {
+                            OK: {
+                                text: "确认",
+                                action: function() {
+                                    $('#person-item').click();
+                                }
+                            }
+                        }
+                    });
+                }
+            }
+        });
+    });
+
     $('#publish-item').click(function() {
         var goodsTable = $('#goodsTable');
         var tableCode = '';

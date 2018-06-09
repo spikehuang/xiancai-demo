@@ -47,8 +47,9 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-3 col-sm-9">
-                                <button id="saveButton" type="button" class="btn btn-primary">登录</button>
+                                <button id="loginButton" type="button" class="btn btn-primary">登录</button>
                                 <button id="returnButton" type="button" class="btn btn-default" style="margin-left: 50px">返回</button>
+                                <span id="loginMessage" class="glyphicon"></span>
                             </div>
                         </div>
                     </form>
@@ -62,5 +63,6 @@
 <script type="text/javascript" th:src="@{/js/jquery-3.3.1.min.js}"></script>
 <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
 <script type="text/javascript" th:src="@{/js/jquery-confirm.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/js.cookie.min.js}"></script>
 <script type="text/javascript" th:src="@{/js/login.js}"></script>
 </html>
