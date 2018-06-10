@@ -63,7 +63,8 @@ public class WebPageController {
     }
 
     @GetMapping("/publish")
-    public String publish() {
+    public String publish(Model model) {
+        model.addAttribute("result", new Result<>(StateEnum.SUCCESS, goodsCatService.listGoodsCats()));
         return "/publish";
     }
 
