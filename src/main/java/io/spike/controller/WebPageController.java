@@ -87,6 +87,7 @@ public class WebPageController {
     public String administrator(Model model) {
         model.addAttribute("userResult", new Result<>(StateEnum.SUCCESS, userService.listUsers()));
         model.addAttribute("goodsResult", new Result<>(StateEnum.SUCCESS, goodsService.listAllGoods()));
+        model.addAttribute("goodsCatResult", new Result<>(StateEnum.SUCCESS, goodsCatService.listGoodsCats()));
         return "/administrator";
     }
 
