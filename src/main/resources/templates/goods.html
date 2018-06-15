@@ -79,6 +79,12 @@
                                         <span class="param-name">交易方式</span>
                                         <span class="param-value">线下交易</span>
                                     </div>
+                                    <div class="info-line">
+                                        <span class="param-name">状态</span>
+                                        <span class="param-value status" th:if="${result.data.status} eq '0'">正常</span>
+                                        <span class="param-value status" th:if="${result.data.status} eq '1'">正在交易</span>
+                                        <span class="param-value status" th:if="${result.data.status} eq '2'">已下架</span>
+                                    </div>
                                     <div class="info-line buttons">
                                         <button class="btn btn-success" id="buyButton"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;购买</button>
                                         <button class="btn btn-default" style="margin-left: 20px;" id="likeButton"><span class="glyphicon glyphicon-heart"></span>&nbsp;收藏</button>

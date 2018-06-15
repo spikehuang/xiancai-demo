@@ -4,6 +4,7 @@ $(function () {
 //         Cookies.set('username', 'tom', {expires: 7, path: '/xiancai'});
 //         Cookies.set('userId', 7001, {expires: 7, path: '/xiancai'});
         init();
+        changeButton();
     });
 
     function init() {
@@ -17,6 +18,18 @@ $(function () {
             });
         }
     }
+
+    function changeButton() {
+        var status = $('.status').html();
+        if (status !== '正常') {
+            $('#buyButton').attr('disabled', 'disabled');
+            $('#buyButton').attr('title', '商品正在被交易或已下架，暂时无法购买');
+        }
+    }
+
+    $("#distributeButton").click(function() {
+        location.href = '/xiancai/publish';
+    });
 
     $('#loginButton').click(function () {
         var inputPhone = $('#phone').val();
@@ -62,39 +75,54 @@ $(function () {
                             async: "false",
                             contentType: "application/json",
                             dataType: "JSON",
-                            data: JSON.stringify(buyInfo)
-                        });
-                        var orderId = '';
-                        $.ajax({
-                            url: "/xiancai/orders/" + userId + "/" + goodsId,
-                            type: "GET",
-                            async: "false",
-                            success: function(result) {
-                                if (result.code === 1) {
-                                    orderId = result.data;
-                                    $.alert({
-                                        type: "green",
-                                        title: "系统提示",
-                                        content: "购买成功！",
-                                        icon: 'glyphicon glyphicon-ok-sign',
-                                        buttons: {
-                                            OK: {
-                                                text: "确认",
-                                                action: function () {
-                                                    location.href = '/xiancai/orders/' + orderId + '/detail';
+                            data: JSON.stringify(buyInfo),
+                            success: function() {
+                                var orderId = '';
+                                $.ajax({
+                                    url: "/xiancai/orders/" + userId + "/" + goodsId,
+                                    type: "GET",
+                                    success: function(result) {
+                                        if (result.code === 1) {
+                                            orderId = result.data;
+                                            $.alert({
+                                                type: "green",
+                                                title: "系统提示",
+                                                content: "购买成功！",
+                                                icon: 'glyphicon glyphicon-ok-sign',
+                                                buttons: {
+                                                    OK: {
+                                                        text: "确认",
+                                                        action: function () {
+                                                            location.href = '/xiancai/orders/' + orderId + '/detail';
+                                                        }
+                                                    }
                                                 }
-                                            }
+                                            });
+                                        } else {
+                                            console.log(result.msg);
                                         }
-                                    });
-                                } else {
-                                    console.log(result.msg);
-                                }
+                                    }
+                                });
                             }
                         });
                     }
                 },
                 cancel: {
                     text: "取消"
+                }
+            }
+        });
+    });
+
+    $('#likeButton').click(function() {
+        $.alert({
+            type: "green",
+            title: "系统提示",
+            content: "收藏成功！",
+            icon: 'glyphicon glyphicon-ok-sign',
+            buttons: {
+                OK: {
+                    text: "确认"
                 }
             }
         });

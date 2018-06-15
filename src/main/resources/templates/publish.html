@@ -6,6 +6,7 @@
     <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}"/>
     <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap-theme.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/jquery-confirm.min.css}"/>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap-select.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/publish.css}"/>
 </head>
 <body>
@@ -52,6 +53,7 @@
     </div>
 
 </div>
+<!--<button id="testButton">test</button>-->
 <div class="jumbotron">
     <div class="row" id="title">
         <div class="col-md-10 col-md-offset-1">
@@ -66,11 +68,13 @@
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="main" style="padding: 15px;">
-                    <form class="form-horizontal" id="insertForm">
+                    <form class="form-horizontal" id="insertForm" method="POST" action="/xiancai/upload" enctype="multipart/form-data">
                         <div class="form-group" style="position:relative">
                             <label class="col-md-3 control-label">上传图片</label>
                             <div class="col-md-5">
-                                <input type="file" id="img"/>
+                                <!--<input type="file" id="img"/>-->
+                                <!--<input id="img" name="img" type="file" class="file" data-show-preview="false"/>-->
+                                <input type="file" name="file" id="img" value=""/>
                             </div>
                         </div>
                         <div class="form-group" style="position:relative">
@@ -89,7 +93,7 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">分类</label>
                             <div class="col-md-5">
-                                <input type="password" class="form-control" id="cat"/>
+                                <select class="selectpicker" id="cat" title="商品分类"></select>
                             </div>
                         </div>
                         <div class="form-group">
@@ -99,7 +103,7 @@
                             </div>
                         </div>
                         <div class="form-group" id="publish">
-                            <button id="publishButton" type="button" class="btn btn-success">确认发布</button>
+                            <button id="publishButton" type="submit" class="btn btn-success">确认发布</button>
                         </div>
                     </form>
                 </div>
@@ -113,6 +117,8 @@
 <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
 <script type="text/javascript" th:src="@{/js/jquery-confirm.min.js}"></script>
 <script type="text/javascript" th:src="@{/js/js.cookie.min.js}"></script>
+<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap-select.min.js}"></script>
+<script type="text/javascript" th:src="@{/bootstrap/js/defaults-zh_CN.min.js}"></script>
 <script type="text/javascript" th:src="@{/js/publish.js}"></script>
 <script type="text/javascript" th:src="@{/js/common/nav-bar.js}"></script>
 </html>

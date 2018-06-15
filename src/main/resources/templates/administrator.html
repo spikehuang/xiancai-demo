@@ -22,7 +22,7 @@
         <div class="col-md-8" id="detail">
             <div id="user" style="display: block;">
                 <div class="main" style="padding-top: 50px;">
-                    <table class="table table-hover table-bordered table-striped">
+                    <table class="table table-bordered table-hover">
                         <thead>
                         <tr>
                             <th>用户ID</th>
@@ -60,7 +60,7 @@
             </div>
             <div id="goods" style="display: none;">
                 <div class="main" style="padding-top: 50px;">
-                    <table class="table table-hover table-bordered table-striped">
+                    <table class="table table-bordered table-hover">
                         <thead>
                         <tr>
                             <th>商品ID</th>
@@ -83,7 +83,7 @@
                             <td th:if="${goods.catId} eq '2'">电子产品</td>
                             <td th:if="${goods.catId} eq '3'">鞋帽配饰</td>
                             <td th:if="${goods.catId} eq '4'">图书</td>
-                            <td th:if="${goods.catId} eq '5'">宠物</td>
+                            <td th:if="${goods.catId} eq '5'">球类</td>
                             <td th:if="${goods.catId} eq '6'">乐器</td>
                             <td th:if="${goods.status} eq '0'">待交易</td>
                             <td th:if="${goods.status} eq '1'">交易中</td>
@@ -104,7 +104,7 @@
             </div>
             <div id="goodsCat" style="display: none;">
                 <div class="main" style="padding-top: 50px;">
-                    <table class="table table-hover table-bordered table-striped">
+                    <table class="table table-bordered table-hover">
                         <thead>
                         <tr>
                             <th>商品类别ID</th>

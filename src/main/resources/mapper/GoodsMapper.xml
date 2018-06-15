@@ -83,7 +83,6 @@
         DATE_FORMAT(FROM_UNIXTIME(update_time), '%Y-%m-%d') update_time_normal
         FROM t_goods
         WHERE name LIKE CONCAT('%', '${name}', '%')
-        AND status = 0
         ORDER BY create_time DESC
     </select>
 
@@ -94,16 +93,5 @@
         update_time = UNIX_TIMESTAMP(NOW())
         WHERE goods_id = #{goodsId, jdbcType=BIGINT}
     </update>
-
-<!--
-    <select id="listUsers" resultMap="BaseResultMap">
-        SELECT user_id, username, password, real_name, phone, address,
-        CASE user_type WHEN 0 THEN '普通会员' WHEN 1 THEN '管理员' END,
-        DATE_FORMAT(FROM_UNIXTIME(create_time), '%Y-%m-%d') create_time_normal,
-        DATE_FORMAT(FROM_UNIXTIME(update_time), '%Y-%m-%d') update_time_normal
-        FROM t_user
-        ORDER BY create_time, update_time
-    </select>
--->
 
 </mapper>
